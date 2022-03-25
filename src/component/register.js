@@ -2,7 +2,7 @@
 export const register = () => {
   const sectionRegister = document.createElement('section');
   sectionRegister.innerHTML = `<section>
-  <form>
+  <form class="classForm">
     <h2>Información de pago</h2>
     <p>
         <label for="firstName">

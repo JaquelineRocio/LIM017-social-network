@@ -1,3 +1,6 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable space-before-blocks */
+/* eslint-disable no-extra-semi */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 // Este es el punto de entrada de tu aplicacion
@@ -15,6 +18,27 @@ const routes = {
   '/login': login,
   '/register': register,
 };
+
+export const onNavigate = (pathname) => {
+  window.history.pushState(
+    {},
+    pathname,
+    window.location.origin + pathname,
+  );
+
+  while (divRoot.firstChild){
+    divRoot.removeChild(divRoot.firstChild);
+  };
+
+  divRoot.appendChild(routes[pathname]());
+};
+
 const component = routes[window.location.pathname];
 
+window.onpopstate = () => {
+  while (divRoot.firstChild){
+    divRoot.removeChild(divRoot.firstChild);
+  }
+  divRoot.appendChild(routes[window.location.pathname]());
+};
 divRoot.appendChild(component());
