@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
+import { createUser } from '../controllers/auth.js';
+
 export const register = () => {
   const sectionRegister = document.createElement('section');
   sectionRegister.classList.add('sections');
   sectionRegister.innerHTML = `<section>
-  <form class="classForm">
+  
     <h2>Registrate</h2>
     <p>
         <label for="firstName">
@@ -57,10 +59,14 @@ export const register = () => {
     </p>
     <p>
     <label for="password"> Verificar Contraseña:<abbr title="required" aria-label="required">*</abbr> </label>
-    <input type = "password" id="password" pattern=".{6,}" class='classInput'/>
+    <input type = "password" id="validatePassword" pattern=".{6,}" class='classInput'/>
     </p>
-    </form>
+    <button id="btnRegister">Registrarse</button>
+    
     </section>`;
 
+  sectionRegister.querySelector('#btnRegister').addEventListener('click', () => {
+    createUser(sectionRegister.querySelector('#email').value, sectionRegister.querySelector('#password').value);
+  });
   return sectionRegister;
 };
