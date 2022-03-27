@@ -3,12 +3,11 @@
 // import { onNavigate } from '../main.js';
 
 export const login = () => {
-  const sectionHome = document.createElement('section');
-  sectionHome.id = 'containerLogin';
-  sectionHome.innerHTML = `
+  const sectionLogin = document.createElement('section');
+  sectionLogin.setAttribute('id', 'sectionLogin');
+  sectionLogin.innerHTML = `
  <form id="formLogin" class="classForm">
- <fieldset>
-    <legend>Ingresa a tu cuenta</legend>
+ <h2>Ingresa</h2>
     <p>
    <label for="mail"> Email:</label>
    <input type = "email" id="mail" class='classInput'/><abbr title="required" aria-label="required">*</abbr> 
@@ -18,10 +17,9 @@ export const login = () => {
    <input type = "password" id="password" pattern=".{6,}" class='classInput'/><abbr title="required" aria-label="required">*</abbr>
    </p>
    <button type="submit" id= "btnLogin" >Regresar al Inicio</button>
-   </fieldset>
    </form>
    `;
   // const btnLogin = document.getElementById('btnLogin');
   // btnLogin.addEventListener('click', () => onNavigate('/'));
-  return sectionHome;
+  return sectionLogin;
 };

@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable eol-last */
 /* eslint-disable import/no-cycle */
 /* eslint-disable object-curly-spacing */
@@ -8,13 +9,16 @@ import {onNavigate} from '../main.js'
 
 export const Home = () => {
     const sectionHome = document.createElement('section');
+    sectionHome.classList.add("sectionHome");
     const btnRegister = document.createElement('button');
     const btnLogin = document.createElement('button');
 
     btnRegister.textContent = 'Registrate';
     btnRegister.addEventListener('click', () => onNavigate('/register'));
-    btnLogin.textContent = 'Iniciar Sesión';
+    btnRegister.classList.add("btns");
+    btnLogin.textContent = 'Inicia Sesión';
     btnLogin.addEventListener('click', () => onNavigate('/login'));
+    btnLogin.classList.add("btns");
 
     sectionHome.appendChild(btnRegister);
     sectionHome.appendChild(btnLogin);

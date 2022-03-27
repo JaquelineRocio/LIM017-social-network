@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 export const register = () => {
   const sectionRegister = document.createElement('section');
+  sectionRegister.classList.add('sections');
   sectionRegister.innerHTML = `<section>
   <form class="classForm">
-    <h2>Información de pago</h2>
+    <h2>Registrate</h2>
     <p>
         <label for="firstName">
         <span>Nombre:</span>
