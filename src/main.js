@@ -11,12 +11,14 @@ myFunction(); */
 import { Home } from './component/home.js';
 import { login } from './component/login.js';
 import { register } from './component/register.js';
+import { mainPage } from './component/mainPage.js';
 
 const divRoot = document.getElementById('root');
 const routes = {
   '/': Home,
   '/login': login,
   '/register': register,
+  '/mainPage': mainPage,
 };
 
 export const onNavigate = (pathname) => {

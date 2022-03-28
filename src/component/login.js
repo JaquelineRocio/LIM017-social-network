@@ -1,7 +1,8 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/named */
-// import { onNavigate } from '../main.js';
+import { onNavigate } from '../main.js';
 import { signIn } from '../controllers/auth.js';
+import { mainPage } from './mainPage.js';
 
 export const login = () => {
   const sectionLogin = document.createElement('section');
@@ -21,7 +22,8 @@ export const login = () => {
   `;
 
   sectionLogin.querySelector('#btnLogin').addEventListener('click', () => {
-    signIn(sectionLogin.querySelector('#mail').value, sectionLogin.querySelector('#password').value);
+    signIn(sectionLogin.querySelector('#mail').value, sectionLogin.querySelector('#password').value)
+    if (true) { onNavigate('/mainPage'); } else { console.log('no se puede entrar'); }
   });
 
   // const btnLogin = document.getElementById('btnLogin');
