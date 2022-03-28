@@ -9,19 +9,18 @@
 }
 .intro{
     display: block;
-    left: 25%;
-    width: 70%;
+    width: 100%;
     position: absolute;
-    bottom: 50%;
+    bottom: -90%;
 }
 h1{
-    padding: 20px;
+    padding: 0 20px 20px 0px;
     font-size: 40px;
     color: #26416d;
     text-align: center;
 }
 .pIntro{
-    padding: 0 20px 20px 20px;
+    padding: 0 20px 20px 0px;
     font-size: 30px;
     color: rgb(90, 88, 88);
     text-align: justify;
@@ -34,17 +33,34 @@ h1{
     font-family: Roboto, sans-serif;
     text-align: center;
     font-size: 30px;
-    position: relative;
+    position: absolute;
     color:gray;
+    bottom: 722%;
+    left: -5%;
+    padding: 1%;
+}
+.btn1{
+    width: 50%;
+    background-color: #D6E5FA;
+    border: 1px solid rgba(158,158,255,1);
+    border-radius:5px;
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    font-size: 30px;
+    position: absolute;
+    color:gray;
+    bottom: 722%;
+    left: 50%;
+    padding: 1%;
 }
 .sectionHome{
     display: flex;
     flex-direction: row;
     position: absolute;
-    bottom:93%;
-    left:50%;
+    bottom:55%;
+    left:10%;
     margin:10px;
-    width: 50%;
+    width: 80%;
     height: 4%;
 }
 #formRegister{
@@ -77,6 +93,7 @@ h1{
 #formLogin{
     display: flex;
     flex-direction: column;
+    align-items: center;
     position: absolute;
     bottom:65%;
     left:15%;
@@ -86,6 +103,15 @@ h1{
     padding: 10px;
 }
 .button{
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: #26416d;
+    color:white;
+    font-size: 30px;
+    width: 40%;
+    padding: 5px;
+}
+.buttonFirebase{
     border: 1px solid black;
     border-radius: 15px;
     background-color: #26416d;
@@ -105,9 +131,8 @@ h1{
         display:block;
     }
     .intro{
-        left: 60%;
-        width: 33%;
-        bottom:20%;
+        left: 55%;
+        width: 100%;
     }
     h1{
         font-size: 40px;
@@ -115,34 +140,49 @@ h1{
     .pIntro{
         font-size: 25px;
     }
+    .btns{
+        width:40%;
+        bottom: 732%;
+        left: 60%;
+    }
+    .btn1{
+        width:40%;
+        bottom: 732%;
+        left: 108%;
+    }
     .sectionHome{
-        bottom:85%;
-        left:61%;
-        width: 28%;
+        bottom:30%;
+        left:35%;
+        width: 40%;
         height: 7%;
     }
     #formRegister{
-        bottom: 7%;
-        left:55%;
+        bottom: 5%;
+        left:52%;
         font-size: 20px;
-        width: 35%;
+        width: 30%;
         padding: 5%;
     }
     .classInput{
         font-size: 20px;
-        width:60%;
+        width:100%;
         height:20px;
     }
     #formLogin{
-        bottom: 40%;
-        left:55%;
+        bottom: 22%;
+        left:52%;
         font-size: 20px;
-        width: 35%;
+        width: 40%;
         padding: 5%;
     }
     .button{
         font-size: 20px;
         width: 30%;
+    }
+    .buttonFirebase{
+    font-size: 20px;
+    width: 50%;
+    padding: 5px;
     }
 }
 /* @media (min-width: 867px) and (max-width: 2640px) {
