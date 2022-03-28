@@ -6,8 +6,8 @@ import { signIn } from '../controllers/auth.js';
 export const login = () => {
   const sectionLogin = document.createElement('section');
   sectionLogin.setAttribute('id', 'sectionLogin');
-  sectionLogin.innerHTML = `
-  <h2>Ingresa</h2>
+  sectionLogin.innerHTML = `<section id="formLogin">
+  <h1>Ingresa</h1>
     <p>
    <label for="mail"> Email:</label>
    <input type = "email" id="mail" class='classInput'/><abbr title="required" aria-label="required">*</abbr> 
@@ -16,7 +16,8 @@ export const login = () => {
    <label for="password"> Contraseña: </label>
    <input type = "password" id="password" pattern=".{6,}" class='classInput'/><abbr title="required" aria-label="required">*</abbr>
    </p>
-   <button id= "btnLogin" >Ingresa</button>
+   <button id= "btnLogin" class ="button">Ingresa</button>
+   </section>
   `;
 
   sectionLogin.querySelector('#btnLogin').addEventListener('click', () => {

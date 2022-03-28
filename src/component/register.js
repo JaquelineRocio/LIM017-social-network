@@ -4,9 +4,9 @@ import { createUser } from '../controllers/auth.js';
 export const register = () => {
   const sectionRegister = document.createElement('section');
   sectionRegister.classList.add('sections');
-  sectionRegister.innerHTML = `<section>
+  sectionRegister.innerHTML = `<section id="formRegister">
   
-    <h2>Registrate</h2>
+    <h1>Registrate</h1>
     <p>
         <label for="firstName">
         <span>Nombre:</span>
@@ -47,7 +47,7 @@ export const register = () => {
       <label for="gender">
         <span>Género:</span>
       </label>
-      <select id="gender" name="usercard">
+      <select id="gender" name="usercard" class='classInput'>
         <option value="female">Female</option>
         <option value="male">Male</option>
         <option value="other">Other</option>
@@ -61,7 +61,7 @@ export const register = () => {
     <label for="password"> Verificar Contraseña:<abbr title="required" aria-label="required">*</abbr> </label>
     <input type = "password" id="validatePassword" pattern=".{6,}" class='classInput'/>
     </p>
-    <button id="btnRegister">Registrarse</button>
+    <button id="btnRegister" class ="button">Registrarse</button>
     
     </section>`;
 

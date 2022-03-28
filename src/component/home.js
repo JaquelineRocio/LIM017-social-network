@@ -14,10 +14,16 @@ export const Home = () => {
     const btnLogin = document.createElement('button');
 
     btnRegister.textContent = 'Registrate';
-    btnRegister.addEventListener('click', () => onNavigate('/register'));
+    btnRegister.addEventListener('click', () => {
+        onNavigate('/register');
+        document.querySelector('.intro').classList.add('hidden')
+    });
     btnRegister.classList.add("btns");
     btnLogin.textContent = 'Inicia Sesión';
-    btnLogin.addEventListener('click', () => onNavigate('/login'));
+    btnLogin.addEventListener('click', () => {
+        onNavigate('/login')
+        document.querySelector('.intro').classList.add('hidden')
+    });
     btnLogin.classList.add("btns");
 
     sectionHome.appendChild(btnRegister);
