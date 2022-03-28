@@ -15,8 +15,8 @@ export const login = () => {
     <p>
    <input type = "password" id="password" pattern=".{6,}" class='classInput' placeholder ="Contraseña"/><abbr title="required" aria-label="required">*</abbr>
    </p>
-   <button id= "btnLogin" class ="button">Ingresa</button>
-   <button id= "signInGoogle" class ="buttonFirebase">Continua con Google</button>
+   <button id="btnLogin" class ="button">Ingresa</button>
+   <button id="signInGoogle" class ="buttonFirebase">Continua con Google</button>
    </section>
   `;
 
@@ -24,7 +24,7 @@ export const login = () => {
     signIn(sectionLogin.querySelector('#mail').value, sectionLogin.querySelector('#password').value);
     if (true) { onNavigate('/mainPage'); } else { console.log('no se puede entrar'); }
   });
-  sectionLogin.querySelector('#signInGoogle').addEventListener('click', () => SignInWithGoogle);
+  sectionLogin.querySelector('#signInGoogle').addEventListener('click', () => SignInWithGoogle());
   // const btnLogin = document.getElementById('btnLogin');
   // btnLogin.addEventListener('click', () => onNavigate('/'));
   return sectionLogin;

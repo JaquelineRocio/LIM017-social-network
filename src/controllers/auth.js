@@ -1,9 +1,10 @@
+/* eslint-disable max-len */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 // eslint-disable-next-line import/no-unresolved
 import {
-  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider,
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup,
 } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js';
 
 export const createUser = (email, password) => {
