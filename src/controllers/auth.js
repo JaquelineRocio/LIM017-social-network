@@ -10,17 +10,28 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js';
 import { onNavigate } from '../main.js';
 
-export const createUser = (email, password) => {
+export const createUser = (email, password, wrongEmail, wrongPassword) => {
   const auth = getAuth();
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
     // Signed in
       const user = userCredential.user;
+      onNavigate('/mainPage');
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      alert('invalido');
+      switch (errorCode) {
+        case 'auth/email-already-in-use':
+          wrongEmail.innerText = 'Este correo ya esta registrado, intente de nuevo.';
+          break;
+        case 'auth/internal-error':
+          wrongPassword.innerText = 'La contraseña es obligatoria';
+          break;
+        default:
+          wrongPassword.innerText = errorCode;
+      }
+     
     });
 };
 
@@ -32,7 +43,6 @@ export const signIn = (email, password, wrongEmail, wrongPassword) => {
     // Signed in
       const user2 = userCredential.user;
       onNavigate('/mainPage');
-    // ...
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -62,7 +72,7 @@ export const signInWithGoogle = () => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      
+      onNavigate('/mainPage');
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;

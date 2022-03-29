@@ -67,31 +67,54 @@ h1{
 #formRegister{
     display: flex;
     flex-direction: column;
-    position: absolute;
- 
-    text-align: left;
-   
+    width: 63%;
+    padding: 30px;
+    margin: 30px;
+    background: rgb(255 255 255 / 50%);
+    box-shadow: 0 25px 45px rgb(0 0 0 / 25%);
+    border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(5px);
+    /*backdrop-filter:blur(2px);*/
+
+
 }
+
 .classInput{
-    background-color: rgba(18, 18, 19, 0.1);
+    background-color: rgba(255, 255, 255);
     border: 1px solid rgba(158,158,255,1);
     border-radius:5px;
     color:gray;
     text-align: justify;
+    width: 90%;
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
 /*         font-size: 30px;
         margin-bottom: 10px;
         width:60%;
         height:30px;
         padding: 5px;*/
 } 
+#titleRegister{
+    padding: 0;
+    margin-bottom: 20px;
+    color: white;
+}
+
 .classInput:hover{
-    background-color: rgba(51, 153, 172, 0.4);
+    background-color: rgba(213, 243, 248, 0.6);
     border: 1px solid rgb(223, 226, 10);
 }
 #formLogin{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 63%;
+    padding: 30px;
+    margin: 30px;
+    background: rgb(255 255 255 / 50%);
+    box-shadow: 0 25px 45px rgb(0 0 0 / 25%);
+    border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(5px);
    /*  position: absolute;
     bottom:65%;
     left:15%;
@@ -101,26 +124,58 @@ h1{
     padding: 10px; */
 }
 .button{
-    border: 1px solid black;
-    border-radius: 15px;
+    border: 2px solid black;
+    border-radius: 5px;
     background-color: #26416d;
     color:white;
-    font-size: 30px;
-    width: 40%;
-    padding: 5px;
+    font-size: 23px;
+    width: 98%;
+    padding: 2px;
+    margin-bottom: 9px;
 }
-.buttonFirebase{
-    border: 1px solid black;
-    border-radius: 15px;
-    background-color: #26416d;
-    color:white;
-    font-size: 30px;
-    width: 40%;
-    padding: 5px;
+button:hover{
+    background-color: #4d9696;
+}
+#btnRedirectsRegister{
+    background: none;
+  border: 0;
+  
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+}
+#btnRedirectsRegister:hover{
+    color: black;
+    font-weight: bolder;
 }
 .hidden{
     display:none;
 }
+.sectionsForms{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /*background-image: url(img/fondo2Grande.png);*/
+    background-image: linear-gradient(to right, #8379e8, #c37ed4, #e48dc1, #f2a4b8, #f4bebc);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.mainPage{
+    background-image: url(img/logoMejorado.png);
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+}
+.error{
+    color: #ff5656de;
+    font-size: 20px;
+    font-weight: bold;  
+}
+
  @media (min-width: 1000px) and (max-width: 2640px) {
     .sectionHome{
         background-image: url(img/background.gif);
@@ -137,6 +192,16 @@ h1{
     .btnHome{
         width: 20%;
         font-size: 30px;
+    }
+    #formRegister{
+        width: 30%;
+        
+    }
+    #formLogin{
+        width: 30%;
+    }
+    .button{
+        width: 95%;
     }
  }
    /* .gifSmall{

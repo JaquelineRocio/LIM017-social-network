@@ -6,24 +6,24 @@ import { signIn, signInWithGoogle, signInWithFacebook } from '../controllers/aut
 
 export const login = () => {
   const sectionLogin = document.createElement('section');
-  sectionLogin.setAttribute('id', 'sectionLogin');
+  sectionLogin.setAttribute('class', 'sectionsForms');
   sectionLogin.innerHTML = `<section id="formLogin">
   
-  <h1>Ingresa</h1>
+  <h1 >Ingresa</h1>
     <p>
-   <input type = "email" id="mail" class='classInput' placeholder ="Email"/><abbr title="required" aria-label="required">*</abbr>
-   <p id="wrongEmail"></p>
+   <input type = "email" id="mail" class='classInput' placeholder ="Email" required/>
+   <p id="wrongEmail"  class="error"></p>
    </p>
     <p>
-   <input type = "password" id="password" pattern=".{6,}" class='classInput' placeholder ="Contraseña"/><abbr title="required" aria-label="required">*</abbr>
-   <p id="wrongPassword"></p>
+   <input type = "password" id="password" pattern=".{6,}" class='classInput' placeholder ="Contraseña" required/>
+   <p id="wrongPassword" class="error"></p>
    </p>
    <button id="btnLogin" class ="button">Ingresa</button>
-   <button type="button" id="signInGoogle" class ="buttonFirebase">Continua con Google</button>
-   <button type="button" id="signInFacebook" class ="buttonFirebase">Continua con Facebook</button>
+   <button type="button" id="signInGoogle" class ="button" >Continua con Google</button>
+   <button type="button" id="signInFacebook" class ="button">Continua con Facebook</button>
+   <button type="button" id="btnRedirectsRegister">No tienes cuenta?, Registrate </button>
    </section>
   `;
-
   sectionLogin.querySelector('#btnLogin').addEventListener('click', () => {
     const email = sectionLogin.querySelector('#mail').value;
     const password = sectionLogin.querySelector('#password').value;
@@ -33,6 +33,7 @@ export const login = () => {
   });
   sectionLogin.querySelector('#signInGoogle').addEventListener('click', () => signInWithGoogle());
   sectionLogin.querySelector('#signInFacebook').addEventListener('click', () => signInWithFacebook());
+  sectionLogin.querySelector('#btnRedirectsRegister').addEventListener('click', () => onNavigate('/register'));
   // const btnLogin = document.getElementById('btnLogin');
   // btnLogin.addEventListener('click', () => onNavigate('/'));
   return sectionLogin;

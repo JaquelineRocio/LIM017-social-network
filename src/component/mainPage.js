@@ -1,6 +1,5 @@
-
-export const mainPage = () =>{
-    const divWelcome = document.createElement("div");
-    divWelcome.textContent = "Probando nueva pagina";
-    return divWelcome;
-}
+export const mainPage = () => {
+  const divWelcome = document.createElement('main');
+  divWelcome.classList.add('mainPage');
+  return divWelcome;
+};

@@ -3,10 +3,10 @@ import { createUser } from '../controllers/auth.js';
 
 export const register = () => {
   const sectionRegister = document.createElement('section');
-  sectionRegister.classList.add('sections');
-  sectionRegister.innerHTML = `<section id="formRegister">
+  sectionRegister.classList.add('sectionsForms');
+  sectionRegister.innerHTML = `<div id="blur"></div><section id="formRegister">
     <form>
-    <h1>Registrate</h1>
+    <h1 id="titleRegister">Registrate</h1>
     <p>
         <input id="firstName" placeholder ="Nombres" name="firstName" type="text" class='classInput'/>
     </p>
@@ -14,15 +14,16 @@ export const register = () => {
         <input id="lastName" placeholder ="Apellidos" name="lastName" type="text" class='classInput'/>
     </p>
     <p>
-        <input id="email" placeholder ="Email" name="lastName" type="text" class='classInput'/>
+        <input id="email" placeholder ="Email" name="email" type="text" class='classInput'/>
+        <p id="wrongEmail"  class="error"></p>
     </p>
     <p>
-        <strong><abbr title="required">*</abbr></strong>
+       
         <input type="tel" placeholder ="Número de Celular" id="phoneNumber" name="phoneNumber" class='classInput'>
     </p>
     <p>
-        <strong><abbr title="required">*</abbr></strong>
-        <em>el formato mm/aa</em>
+       
+       
         <input type="date" placeholder ="Fecha de nacimiento" id="birthday" name="expiration" class='classInput'>
     </p>
     <p>
@@ -34,19 +35,26 @@ export const register = () => {
       </select>
     </p>
     <p>
-    <abbr title="required" aria-label="required">*</abbr>
+   
     <input type = "password" placeholder ="Contraseña" id="password" pattern=".{6,}" class='classInput'/>
     </p>
     <p>
-    <abbr title="required" aria-label="required">*</abbr>
+   
     <input type = "password" placeholder ="Contraseña" id="validatePassword" pattern=".{6,}" class='classInput'/>
     </p>
+    <p id="wrongPassword"  class="error"></p>
     <button type="button"  id="btnRegister" class ="button">Registrarse</button>
+     
     </form>
+    
     </section>`;
 
   sectionRegister.querySelector('#btnRegister').addEventListener('click', () => {
-    createUser(sectionRegister.querySelector('#email').value, sectionRegister.querySelector('#password').value);
+    const email = sectionRegister.querySelector('#email').value;
+    const password = sectionRegister.querySelector('#password').value;
+    const wrongEmail = sectionRegister.querySelector('#wrongEmail');
+    const wrongPassword = sectionRegister.querySelector('#wrongPassword');
+    createUser(email, password, wrongEmail, wrongPassword);
   });
   return sectionRegister;
 };
