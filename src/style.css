@@ -1,78 +1,76 @@
+@import url(https://fonts.googleapis.com/css?family=Montez|Pompiere);
 *{
     padding: 0;
     margin: 0;
-    font-family: roboto, sans-serif;
+    /*font-family: roboto, sans-serif;*/
+    font-family: Pompiere;
     }
 .gif{
     width: 100%;
     display:none;
 }
+.sectionHome{
+    background-image: url(img/responsive.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+     display: flex;
+     justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+    align-items: flex-end;
+    
+ }
 .intro{
-    display: block;
-    width: 100%;
-    position: absolute;
-    bottom: -90%;
+    
+    width: 85%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    
+    margin: 20px;
+    /* position: absolute;
+    bottom: -90%; */
 }
 h1{
     padding: 0 20px 20px 0px;
-    font-size: 40px;
+    font-size:33px;
     color: #26416d;
     text-align: center;
 }
 .pIntro{
     padding: 0 20px 20px 0px;
-    font-size: 30px;
+    font-size: 20px;
     color: rgb(90, 88, 88);
     text-align: justify;
 }
-.btns{
-    width: 50%;
+.btnHome{
+    width: 35%;
     background-color: #D6E5FA;
     border: 1px solid rgba(158,158,255,1);
     border-radius:5px;
-    font-family: Roboto, sans-serif;
+    /*font-family: Roboto, sans-serif;*/
     text-align: center;
-    font-size: 30px;
-    position: absolute;
+    font-size: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 150px;
+    margin-bottom: 20px;
+    /*position: absolute;
     color:gray;
     bottom: 722%;
     left: -5%;
-    padding: 1%;
+    padding: 1%;*/
+   
 }
-.btn1{
-    width: 50%;
-    background-color: #D6E5FA;
-    border: 1px solid rgba(158,158,255,1);
-    border-radius:5px;
-    font-family: Roboto, sans-serif;
-    text-align: center;
-    font-size: 30px;
-    position: absolute;
-    color:gray;
-    bottom: 722%;
-    left: 50%;
-    padding: 1%;
-}
-.sectionHome{
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    bottom:55%;
-    left:10%;
-    margin:10px;
-    width: 80%;
-    height: 4%;
-}
+
+
 #formRegister{
     display: flex;
     flex-direction: column;
     position: absolute;
-    bottom:35%;
-    left:15%;
-    font-size: 30px;
+ 
     text-align: left;
-    width: 70%;
-    padding: 10px;
+   
 }
 .classInput{
     background-color: rgba(18, 18, 19, 0.1);
@@ -80,12 +78,12 @@ h1{
     border-radius:5px;
     color:gray;
     text-align: justify;
-    font-size: 30px;
-    margin-bottom: 10px;
-    width:60%;
-    height:30px;
-    padding: 5px;
-}
+/*         font-size: 30px;
+        margin-bottom: 10px;
+        width:60%;
+        height:30px;
+        padding: 5px;*/
+} 
 .classInput:hover{
     background-color: rgba(51, 153, 172, 0.4);
     border: 1px solid rgb(223, 226, 10);
@@ -94,13 +92,13 @@ h1{
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
+   /*  position: absolute;
     bottom:65%;
     left:15%;
     font-size: 30px;
     text-align: left;
     width: 70%;
-    padding: 10px;
+    padding: 10px; */
 }
 .button{
     border: 1px solid black;
@@ -124,7 +122,24 @@ h1{
     display:none;
 }
  @media (min-width: 1000px) and (max-width: 2640px) {
-    .gifSmall{
+    .sectionHome{
+        background-image: url(img/background.gif);
+     }
+     .intro{
+         width: 38%;
+     }
+     h1{
+        font-size: 50px;
+     }
+     .pIntro{
+        font-size: 35px;
+    }
+    .btnHome{
+        width: 20%;
+        font-size: 30px;
+    }
+ }
+   /* .gifSmall{
         display:none;
     }
     .gif{
@@ -184,7 +199,7 @@ h1{
     width: 50%;
     padding: 5px;
     }
-}
+}*/
 /* @media (min-width: 867px) and (max-width: 2640px) {
     /* .sectionHome{
 
