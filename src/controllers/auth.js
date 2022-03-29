@@ -13,29 +13,29 @@ export const createUser = (email, password) => {
     .then((userCredential) => {
     // Signed in
       const user = userCredential.user;
-      console.log(user);
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
+      alert('invalido');
     });
 };
 
 export const signIn = (email, password) => {
   const auth2 = getAuth();
+  let result;
   signInWithEmailAndPassword(auth2, email, password)
     .then((userCredential) => {
     // Signed in
       const user2 = userCredential.user;
-      console.log(user2);
-    // ...
+      result = true;
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
+      result = false;
     });
+  return result;
 };
 
 export const SignInWithGoogle = () => {
@@ -48,6 +48,7 @@ export const SignInWithGoogle = () => {
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
+      return true;
     // ...
     }).catch((error) => {
     // Handle Errors here.
@@ -57,6 +58,7 @@ export const SignInWithGoogle = () => {
       const email = error.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
+      return false;
       // ...
       console.log(errorCode, errorMessage, email, credential);
     });
