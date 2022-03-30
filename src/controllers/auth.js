@@ -22,6 +22,12 @@ export const createUser = (email, password, wrongEmail, wrongPassword) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       switch (errorCode) {
+        case 'auth/missing-email':
+          wrongEmail.innerText = 'El correo es obligatorio';
+          break;
+        case 'auth/invalid-email':
+          wrongEmail.innerText = 'Digite un correo válido';
+          break;
         case 'auth/email-already-in-use':
           wrongEmail.innerText = 'Este correo ya esta registrado, intente de nuevo.';
           break;

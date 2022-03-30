@@ -136,16 +136,15 @@ h1{
 button:hover{
     background-color: #4d9696;
 }
-#btnRedirectsRegister{
+.redirect{
     background: none;
-  border: 0;
-  
-  font: inherit;
-  line-height: normal;
-  overflow: visible;
-  padding: 0;
+    border: 0;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
 }
-#btnRedirectsRegister:hover{
+.redirect:hover{
     color: black;
     font-weight: bolder;
 }
@@ -164,11 +163,20 @@ button:hover{
     background-size: cover;
     height: 100vh;
 }
-.mainPage{
-    background-image: url(img/logoMejorado.png);
-    width: 100vw;
-    height: 100vh;
+/* .mainPage{
+    background-image: url(img/post.jpg);
+    width: 80%;
+    height: 80%;
     background-repeat: no-repeat;
+} */
+.main{
+    display:flex;
+    justify-content: space-evenly;
+}
+.imagen{
+    width:20%;
+    height:20%;
+    margin-top:7%;
 }
 .error{
     color: #ff5656de;
@@ -176,6 +184,45 @@ button:hover{
     font-weight: bold;  
 }
 
+
+a {
+    color: gray;
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    background-color: #26416d2c;
+}
+
+.logo img {
+    width: 100px;
+    margin: 15px 40px 10px 50px;
+}
+
+.header input {
+    height: 36px;
+    border-radius: 4px;
+    background-color: #faf7f1;
+    color: gray;
+    border: 1px solid transparent;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 50px 20px 10px;
+    padding: 0 20px;
+    flex-grow: 1;
+}
+.icons {
+    display: flex;
+    align-items: center;
+}
+.icons img {
+    width: 35px;
+    
+    margin: 20px;
+}
  @media (min-width: 1000px) and (max-width: 2640px) {
     .sectionHome{
         background-image: url(img/background.gif);
