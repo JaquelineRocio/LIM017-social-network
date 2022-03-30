@@ -1,5 +1,7 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-unused-vars */
 import { createUser } from '../controllers/auth.js';
+import { onNavigate } from '../main.js';
 
 export const register = () => {
   const sectionRegister = document.createElement('section');
@@ -44,11 +46,10 @@ export const register = () => {
     </p>
     <p id="wrongPassword"  class="error"></p>
     <button type="button"  id="btnRegister" class ="button">Registrarse</button>
-     
+    <button type="button" id="btnRedirectsLogin" class="redirect">Si ya tienes cuenta, Ingresa aquí</button>
     </form>
-    
     </section>`;
-
+  
   sectionRegister.querySelector('#btnRegister').addEventListener('click', () => {
     const email = sectionRegister.querySelector('#email').value;
     const password = sectionRegister.querySelector('#password').value;
@@ -56,5 +57,6 @@ export const register = () => {
     const wrongPassword = sectionRegister.querySelector('#wrongPassword');
     createUser(email, password, wrongEmail, wrongPassword);
   });
+  sectionRegister.querySelector('#btnRedirectsLogin').addEventListener('click', () => onNavigate('/login'));
   return sectionRegister;
 };
