@@ -8,7 +8,7 @@
 import {onNavigate} from '../main.js'
 
 export const Home = () => {
-    const sectionHome = document.createElement('section'); 
+    const sectionHome = document.createElement('section');
     sectionHome.innerHTML = `<div id="intro" class="intro">
     <h1 id="h1Intro">Entre Patas</h1>
     <p class="pIntro">Es una red social centrada en el bienestar de tu mascota,

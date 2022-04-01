@@ -44,3 +44,8 @@ window.onpopstate = () => {
   divRoot.appendChild(routes[window.location.pathname]());
 };
 divRoot.appendChild(component());
+const btnMenu = document.querySelector('#btnMenuContainer');
+const asideMain = document.querySelector('#asideMain');
+btnMenu.addEventListener('click', () => {
+  asideMain.classList.toggle('active');
+});
