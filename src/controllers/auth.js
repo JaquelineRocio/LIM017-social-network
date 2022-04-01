@@ -37,7 +37,6 @@ export const createUser = (email, password, wrongEmail, wrongPassword) => {
         default:
           wrongPassword.innerText = errorCode;
       }
-     
     });
 };
 
