@@ -1,12 +1,13 @@
 /* eslint-disable no-undef */
 /* eslint-disable import/no-unresolved */
+import '../config/configFirebase.js';
 import { savePost, getPost } from '../config/configFirestore.js';
 
 const postForm = document.getElementById('postForm');
 const newPostsContainer = document.getElementById('newPost');
+
 window.addEventListener('DOMContentLoaded', async () => {
   const querySnapshot = await getPost();
-
   let html = '';
 
   querySnapshot.forEach((doc) => {
@@ -20,7 +21,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 postForm.addEventListener('submit', (e) => {
   e.preventDefault();
-
   const description = postForm.postDescription;
   savePost(description.value);
   postForm.reset();

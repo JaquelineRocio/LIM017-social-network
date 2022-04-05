@@ -2,12 +2,13 @@
 /* eslint-disable no-unused-vars */
 import { createUser } from '../controllers/auth.js';
 import { onNavigate } from '../main.js';
+import { saveUsersData } from '../config/configFirestore.js';
 
 export const register = () => {
   const sectionRegister = document.createElement('section');
   sectionRegister.classList.add('sectionsForms');
   sectionRegister.innerHTML = `<div id="blur"></div><section id="formRegister">
-    <form>
+    <form id="registerForm">
     <h1 id="titleRegister">Registrate</h1>
     <p>
         <input id="firstName" placeholder ="Nombres" name="firstName" type="text" class='classInput'/>
@@ -45,11 +46,11 @@ export const register = () => {
     <input type = "password" placeholder ="Contraseña" id="validatePassword" pattern=".{6,}" class='classInput'/>
     </p>
     <p id="wrongPassword"  class="error"></p>
-    <button type="button"  id="btnRegister" class ="button">Registrarse</button>
+    <button id="btnRegister" class ="button">Registrarse</button>
     <button type="button" id="btnRedirectsLogin" class="redirect">Si ya tienes cuenta, Ingresa aquí</button>
     </form>
     </section>`;
-  
+
   sectionRegister.querySelector('#btnRegister').addEventListener('click', () => {
     const email = sectionRegister.querySelector('#email').value;
     const password = sectionRegister.querySelector('#password').value;
@@ -57,6 +58,18 @@ export const register = () => {
     const wrongPassword = sectionRegister.querySelector('#wrongPassword');
     createUser(email, password, wrongEmail, wrongPassword);
   });
-  sectionRegister.querySelector('#btnRedirectsLogin').addEventListener('click', () => onNavigate('/login'));
+
+  const registerForm = sectionRegister.querySelector('#registerForm');
+
+  registerForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const firstName = sectionRegister.querySelector('#firstName').value;
+    const lastName = sectionRegister.querySelector('#lastName').value;
+    const email = sectionRegister.querySelector('#email').value;
+    const phoneNumber = sectionRegister.querySelector('#phoneNumber').value;
+    const birthday = sectionRegister.querySelector('#birthday').value;
+    saveUsersData(firstName, lastName, email, birthday);
+  });
   return sectionRegister;
 };
