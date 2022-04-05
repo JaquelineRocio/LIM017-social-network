@@ -1,4 +1,6 @@
-import{ onNavigate } from '../main.js';
+/* eslint-disable import/no-cycle */
+import { onNavigate } from '../main.js';
+
 export const mainPage = () => {
   const mainContainer = document.createElement('main');
   mainContainer.classList.add('mainPage');
@@ -24,6 +26,6 @@ export const mainPage = () => {
     </form>
     <div id="newPost"></div>
    </section>`;
-   mainContainer.querySelector('#btnSignOut').addEventListener('click', () => onNavigate('/login'));
+  mainContainer.querySelector('#btnSignOut').addEventListener('click', () => onNavigate('/login'));
   return mainContainer;
 };
