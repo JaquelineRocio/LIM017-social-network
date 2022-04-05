@@ -1,5 +1,5 @@
+/* eslint-disable import/no-cycle */
 import { onNavigate } from '../main.js';
-import { savePost, getPost } from '../config/configFirestore.js';
 
 export const mainPage = () => {
   const mainContainer = document.createElement('main');
@@ -27,33 +27,5 @@ export const mainPage = () => {
     <div id="newPost"></div>
    </section>`;
   mainContainer.querySelector('#btnSignOut').addEventListener('click', () => onNavigate('/login'));
-  const btnMenu = mainContainer.querySelector('#btnMenuContainer');
-  const asideMain = mainContainer.querySelector('#asideMain');
-  btnMenu.addEventListener('click', () => {
-    asideMain.classList.toggle('active');
-  });
-  const postForm = mainContainer.querySelector('#postForm');
-  const newPostsContainer = mainContainer.querySelector('#newPost');
-  window.addEventListener('DOMContentLoaded', async () => {
-    const querySnapshot = await getPost();
-
-    let html = '';
-
-    querySnapshot.forEach((doc) => {
-      const post = doc.data();
-      html += `
-      <div>
-      <h3>${post.description}</h3>
-      </div>`;
-    });
-    newPostsContainer.innerHTML = html;
-  });
-  postForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const description = postForm.postDescription;
-    savePost(description.value);
-    postForm.reset();
-  });
-
   return mainContainer;
 };
