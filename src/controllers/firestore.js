@@ -15,14 +15,16 @@ window.addEventListener('DOMContentLoaded', async () => {
     querySnapshot.forEach((doc) => {
       const post = doc.data();
       html += `
-      <div>
+      <div class="cardPost">
       <h3>${post.description}</h3>
-      <div id="btnsPost">
-      <button class="btnDelete" data-id="${doc.id}">🗑 Borrar</button>
-      <button class="btnEdit" data-id="${doc.id}">🖉 Editar</button>
+      <button class="btnCrud">፧</button>
+      <div class="btnsPost">
+      <button class="btnDelete" data-id="${doc.id}">🗑</button>
+      <button class="btnEdit" data-id="${doc.id}">🖉</button>
       </div>
       </div>`;
     });
+
     newPostsContainer.innerHTML = html;
     const btnDelete = newPostsContainer.querySelectorAll('.btnDelete');
     btnDelete.forEach((btn) => {
@@ -45,6 +47,11 @@ window.addEventListener('DOMContentLoaded', async () => {
     });
   });
 });
+
+// postForm.querySelector('.btnCrud').addEventListener('click', () => {
+//   postForm.querySelector('.btnsPost').classList.toggle('active');
+// });
+
 postForm.addEventListener('submit', (e) => {
   e.preventDefault();
 

@@ -34,7 +34,6 @@ export const login = () => {
   sectionLogin.querySelector('#signInGoogle').addEventListener('click', () => signInWithGoogle());
   sectionLogin.querySelector('#signInFacebook').addEventListener('click', () => signInWithFacebook());
   sectionLogin.querySelector('#btnRedirectsRegister').addEventListener('click', () => onNavigate('/register'));
-  // const btnLogin = document.getElementById('btnLogin');
-  // btnLogin.addEventListener('click', () => onNavigate('/'));
+
   return sectionLogin;
 };
