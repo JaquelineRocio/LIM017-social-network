@@ -3,6 +3,7 @@
 import { createUser } from '../controllers/auth.js';
 import { onNavigate } from '../main.js';
 import { saveUsersData } from '../config/configFirestore.js';
+import { errorRegister } from '../lib/errorHandler.js';
 
 export const register = () => {
   const sectionRegister = document.createElement('section');
@@ -56,7 +57,10 @@ export const register = () => {
     const password = sectionRegister.querySelector('#password').value;
     const wrongEmail = sectionRegister.querySelector('#wrongEmail');
     const wrongPassword = sectionRegister.querySelector('#wrongPassword');
-    createUser(email, password, wrongEmail, wrongPassword);
+    createUser(email, password, wrongEmail, wrongPassword)
+      .then((errorCode) => {
+        wrongPassword.innerText = errorRegister(errorCode);
+      });
   });
 
   const registerForm = sectionRegister.querySelector('#registerForm');

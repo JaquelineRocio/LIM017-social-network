@@ -12,30 +12,16 @@ import { onNavigate } from '../main.js';
 
 export const createUser = (email, password, wrongEmail, wrongPassword) => {
   const auth = getAuth();
-  createUserWithEmailAndPassword(auth, email, password)
+  return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      const user = userCredential.user;
       onNavigate('/mainPage');
+      const user = userCredential.user;
+      return user;
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      switch (errorCode) {
-        case 'auth/missing-email':
-          wrongEmail.innerText = 'El correo es obligatorio';
-          break;
-        case 'auth/invalid-email':
-          wrongEmail.innerText = 'Digite un correo válido';
-          break;
-        case 'auth/email-already-in-use':
-          wrongEmail.innerText = 'Este correo ya esta registrado, intente de nuevo.';
-          break;
-        case 'auth/internal-error':
-          wrongPassword.innerText = 'La contraseña es obligatoria';
-          break;
-        default:
-          wrongPassword.innerText = errorCode;
-      }
+      return errorMessage;
     });
 };
 

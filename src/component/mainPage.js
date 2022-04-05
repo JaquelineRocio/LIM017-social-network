@@ -21,7 +21,7 @@ export const mainPage = () => {
    </aside>
    <section id="postSection">
     <form id="postForm">
-      <textarea id="postDescription" rows="5"></textarea>
+      <textarea id="postDescription" rows="3"></textarea><br>
         <button id="btnPost">Publicar</button>
     </form>
     <div id="newPost"></div>

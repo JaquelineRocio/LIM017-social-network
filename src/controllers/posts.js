@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-undef */
 /* eslint-disable import/no-unresolved */
 import {
@@ -5,6 +6,7 @@ import {
 } from '../config/configFirestore.js';
 
 const postForm = document.getElementById('postForm');
+
 const newPostsContainer = document.getElementById('newPost');
 let editStatus = false;
 let id = '';
@@ -15,14 +17,16 @@ window.addEventListener('DOMContentLoaded', async () => {
     querySnapshot.forEach((doc) => {
       const post = doc.data();
       html += `
-      <div>
+      <div class="cardPost">
       <h3>${post.description}</h3>
-      <div id="btnsPost">
-      <button class="btnDelete" data-id="${doc.id}">🗑 Borrar</button>
-      <button class="btnEdit" data-id="${doc.id}">🖉 Editar</button>
+      <button class="btnCrud">፧</button>
+      <div class="btnsPost">
+      <button class="btnDelete" data-id="${doc.id}">🗑</button>
+      <button class="btnEdit" data-id="${doc.id}">🖉</button>
       </div>
       </div>`;
     });
+
     newPostsContainer.innerHTML = html;
     const btnDelete = newPostsContainer.querySelectorAll('.btnDelete');
     btnDelete.forEach((btn) => {
@@ -45,6 +49,17 @@ window.addEventListener('DOMContentLoaded', async () => {
     });
   });
 });
+
+// newPostsContainer.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', () => {
+//   //newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
+//   console.log('funcionando');
+// }));
+
+postForm.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', (e) => {
+    //newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
+    console.log('funcionando',e);
+  }));
+
 postForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const description = postForm.postDescription;

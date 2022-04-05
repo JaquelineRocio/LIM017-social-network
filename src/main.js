@@ -54,3 +54,10 @@ btnMenu.addEventListener('click', () => {
 // btnSignOut.addEventListener('click', () => {
 //   onNavigate('/login');
 // })
+//});
+
+// const btnCrud = postSection.querySelector('.btnCrud');
+// const btnsPost = postSection.querySelector('.btnsPost');
+// btnCrud.addEventListener('click', () => {
+//   btnsPost.classList.toggle('active');
+// });
