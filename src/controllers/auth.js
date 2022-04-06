@@ -7,15 +7,17 @@
 // eslint-disable-next-line import/no-unresolved
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider,
+  sendEmailVerification,
 } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js';
 import { onNavigate } from '../main.js';
 
 export const createUser = (email, password, wrongEmail, wrongPassword) => {
   const auth = getAuth();
+  sendEmailVerification(auth.currentUser);
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      onNavigate('/mainPage');
       const user = userCredential.user;
+      onNavigate('/mainPage');
       return user;
     })
     .catch((error) => {

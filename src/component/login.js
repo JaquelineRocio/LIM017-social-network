@@ -22,7 +22,7 @@ export const login = () => {
    <button id="btnLogin" class ="button">Ingresa</button>
    <button type="button" id="signInGoogle" class ="button" >Continua con Google</button>
    <button type="button" id="signInFacebook" class ="button">Continua con Facebook</button>
-   <button type="button" id="btnRedirectsRegister" class="redirect">No tienes cuenta?, Registrate </button>
+   <button type="button" id="btnRedirectsRegister" class="redirect">¿No tienes cuenta?, Registrate </button>
    </section>
   `;
   sectionLogin.querySelector('#btnLogin').addEventListener('click', () => {
