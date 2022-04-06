@@ -44,7 +44,7 @@ export const register = () => {
     </p>
     <p>
    
-    <input type = "password" placeholder ="Contraseña" id="validatePassword" pattern=".{6,}" class='classInput'/>
+    <input type = "password" placeholder ="Confirmar Contraseña" id="validatePassword" pattern=".{6,}" class='classInput'/>
     </p>
     <p id="wrongPassword"  class="error"></p>
     <button id="btnRegister" class ="button">Registrarse</button>
@@ -75,5 +75,6 @@ export const register = () => {
     const birthday = sectionRegister.querySelector('#birthday').value;
     saveUsersData(firstName, lastName, email, birthday);
   });
+  registerForm.querySelector('#btnRedirectsLogin').addEventListener('click', () => onNavigate('/login'));
   return sectionRegister;
 };

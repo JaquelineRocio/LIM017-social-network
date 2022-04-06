@@ -99,7 +99,7 @@ h1{
 #titleRegister{
     padding: 0;
     margin-bottom: 20px;
-    color: white;
+    color: #26416d;
 }
 
 .classInput:hover{
@@ -144,6 +144,7 @@ button:hover{
     line-height: normal;
     overflow: visible;
     padding: 0;
+    font-family: roboto;
 }
 .redirect:hover{
     color: black;
@@ -158,8 +159,8 @@ button:hover{
     justify-content: center;
     align-items: center;
     width: 100%;
-    /*background-image: url(img/fondo2Grande.png);*/
-    background-image: linear-gradient(to right, #8379e8, #c37ed4, #e48dc1, #f2a4b8, #f4bebc);
+    background-image: url(img/FondoOficialMobile.png);
+    
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -170,6 +171,7 @@ button:hover{
     grid-template-rows: repeat(12,8.3%);
     width: 100vw;
     height: 100vh;
+    font-family: 'Bellefair', serif;
 } 
 #headerMain{
     grid-column: 1/span 12;
@@ -204,6 +206,7 @@ button:hover{
     font-weight: bold;
     /*margin: 20px 50px 20px 10px;*/
     padding: 0 20px;
+    font-family: 'Bellefair', serif;
 }
 #btnSignOut{
     display: none;
@@ -218,10 +221,11 @@ button:hover{
 #asideMain {
     display: none;
     grid-column: 9/span 4;
-    grid-row: 2/span 4;
+    grid-row: 2/span 3;
     background-color: #f4bebc;
     border-radius: 0px 0px 0px 60px;
     text-align: center;
+    z-index: 1;
 }
 #asideMain.active{
     display: flex;
@@ -232,6 +236,11 @@ button:hover{
 .liGroup{
     width: 100%;
     height: 20%;
+    height: 16%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bellefair', serif;
 }
 .liGroup:hover{
     background: #F9DBDA;
@@ -284,6 +293,7 @@ button:hover{
     border: 1px solid #26416d75;
     font-size: 18px;
     font-family: 'Bellefair', serif;
+    display: flex;
 }
 .btnDelete, .btnEdit{
     border: none;
@@ -292,10 +302,29 @@ button:hover{
 #root {
 overflow-x: hidden;
 }
-.btnsPost{
-    display: none;
-} 
+ 
+.logosSignIn{
+    width: 7%;
+    margin-right: 3%;
+}
+.btnDelete, .btnEdit {
+    font-size: 25px;
+}
+.btnsPost {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.textPost{
+    flex-grow: 1;
+    font-family: 'Bellefair', serif;
+}
+.fa-solid, .fas {
+
+    margin-right: 7%;
+}
  @media (min-width: 768px) and (max-width: 2640px) {
+  
     .sectionHome{
         background-image: url(img/background.gif);
      }
@@ -322,6 +351,9 @@ overflow-x: hidden;
     .button{
         width: 95%;
     }
+    .sectionsForms{
+        background-image: url(img/FondoOficial.png);
+    }
     #asideMain{
         
         grid-column: 1/span 2;
@@ -329,6 +361,7 @@ overflow-x: hidden;
         display: flex;
         background-color: #f4bebc;
         border-radius: 0;
+        
     }
     #logoMain{
         height: 130%;
@@ -338,10 +371,16 @@ overflow-x: hidden;
     }
     #btnSignOut{
         display: block;
+        height: 55%;
+        width: 10%;
+        font-family: 'Bellefair', serif;
+        border-radius: 5px;
+        font-size: 15px;
     }
     #postSection{
         width: 80vw;
     }
+  
  }
    /* .gifSmall{
         display:none;

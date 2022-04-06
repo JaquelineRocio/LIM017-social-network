@@ -7,7 +7,7 @@ import {
 
 const postForm = document.getElementById('postForm');
 
-const newPostsContainer = document.getElementById('newPost');
+const newPost = document.getElementById('newPost');
 let editStatus = false;
 let id = '';
 window.addEventListener('DOMContentLoaded', async () => {
@@ -18,8 +18,8 @@ window.addEventListener('DOMContentLoaded', async () => {
       const post = doc.data();
       html += `
       <div class="cardPost">
-      <h3>${post.description}</h3>
-      <button class="btnCrud">፧</button>
+      <p class="textPost">${post.description}</p>
+     
       <div class="btnsPost">
       <button class="btnDelete" data-id="${doc.id}">🗑</button>
       <button class="btnEdit" data-id="${doc.id}">🖉</button>
@@ -27,15 +27,15 @@ window.addEventListener('DOMContentLoaded', async () => {
       </div>`;
     });
 
-    newPostsContainer.innerHTML = html;
-    const btnDelete = newPostsContainer.querySelectorAll('.btnDelete');
+    newPost.innerHTML = html;
+    const btnDelete = newPost.querySelectorAll('.btnDelete');
     btnDelete.forEach((btn) => {
       btn.addEventListener('click', ({ target: { dataset } }) => {
         deletePost(dataset.id);
       });
     });
 
-    const btnEdit = newPostsContainer.querySelectorAll('.btnEdit');
+    const btnEdit = newPost.querySelectorAll('.btnEdit');
     btnEdit.forEach((btn) => {
       btn.addEventListener('click', async ({ target: { dataset } }) => {
         const doc = await getOnlyPost(dataset.id);
@@ -54,11 +54,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 //   //newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
 //   console.log('funcionando');
 // }));
-
+console.log(postForm.querySelectorAll('.btnCrud'));
 postForm.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', (e) => {
-    //newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
-    console.log('funcionando',e);
-  }));
+  // newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
+  console.log('funcionando', e);
+}));
 
 postForm.addEventListener('submit', (e) => {
   e.preventDefault();
