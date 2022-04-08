@@ -20,8 +20,11 @@ export const mainPage = () => {
       <li class="liGroup">Acerca de nosotros</li>
     </ul>
    </aside>
+   
    <section id="postSection">
+  
     <form id="postForm">
+    <div id="modalContainer"></div>
       <textarea id="postDescription" rows="3"></textarea><br>
         <button id="btnPost">Publicar</button>
     </form>
