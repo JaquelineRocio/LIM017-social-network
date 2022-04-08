@@ -27,7 +27,7 @@ export const createUser = (email, password, wrongEmail, wrongPassword) => {
     });
 };
 
-export const signIn = (email, password, wrongEmail, wrongPassword) => {
+export const signIn = (email, password, wrongEmail) => {
   const auth2 = getAuth();
   let result;
   signInWithEmailAndPassword(auth2, email, password)
@@ -43,7 +43,7 @@ export const signIn = (email, password, wrongEmail, wrongPassword) => {
           wrongEmail.innerText = 'No existe usuario registrado con ese correo';
           break;
         case 'auth/wrong-password':
-          wrongPassword.innerText = 'La contraseña no es válida, intente de nuevo.';
+          wrongEmail.innerText = 'La contraseña no es válida, intente de nuevo.';
           break;
         case 'auth/internal-error':
           wrongEmail.innerText = 'Digite correctamente su contraseña';
@@ -55,7 +55,7 @@ export const signIn = (email, password, wrongEmail, wrongPassword) => {
           wrongEmail.innerText = 'Este correo ya esta registrado, intente de nuevo.';
           break;
         default:
-          wrongPassword.innerText = errorCode;
+          wrongEmail.innerText = errorCode;
       }
     });
   return result;

@@ -13,15 +13,15 @@ export const login = () => {
   <h1 >Ingresa</h1>
     <p>
    <input type = "email" id="mail" class='classInput' placeholder ="Email" required/>
-   <p id="wrongEmail"  class="error"></p>
+  
    </p>
     <p>
    <input type = "password" id="password" pattern=".{6,}" class='classInput' placeholder ="Contraseña" required/>
-   <p id="wrongPassword" class="error"></p>
+   <p id="wrongEmail"  class="error"></p>
    </p>
-   <button id="btnLogin" class ="button">Ingresa</button>
-   <button type="button" id="signInGoogle" class ="button" >Continua con Google</button>
-   <button type="button" id="signInFacebook" class ="button">Continua con Facebook</button>
+   <button id="btnLogin" class ="button">Ingresar</button>
+   <button type="button" id="signInGoogle" class ="button" ><img src="../img/google.png" alt="icono de google" class="logosSignIn"> Continua con Google</button>
+   <button type="button" id="signInFacebook" class ="button"><img src="../img/facebook.png" alt="icono de facebook" class="logosSignIn">Continua con Facebook</button>
    <button type="button" id="btnRedirectsRegister" class="redirect">¿No tienes cuenta?, Registrate </button>
    </section>
   `;
@@ -29,8 +29,8 @@ export const login = () => {
     const email = sectionLogin.querySelector('#mail').value;
     const password = sectionLogin.querySelector('#password').value;
     const wrongEmail = sectionLogin.querySelector('#wrongEmail');
-    const wrongPassword = sectionLogin.querySelector('#wrongPassword');
-    signIn(email, password, wrongEmail, wrongPassword);
+
+    signIn(email, password, wrongEmail);
   });
   sectionLogin.querySelector('#signInGoogle').addEventListener('click', () => signInWithGoogle());
   sectionLogin.querySelector('#signInFacebook').addEventListener('click', () => signInWithFacebook());

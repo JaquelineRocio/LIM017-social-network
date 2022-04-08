@@ -13,10 +13,11 @@ export const mainPage = () => {
    </header>
    <aside id="asideMain">
     <ul id="ulGroup">
-      <li class="liGroup">Grupo 1</li>
-      <li class="liGroup">Grupo 1</li>
-      <li class="liGroup">Grupo 1</li>
-      <li class="liGroup">Grupo 1</li>
+      <li class="liGroup">Perfil</li>
+      <li class="liGroup">Adopciones</li>
+      <li class="liGroup">Consejos</li>
+      <li class="liGroup">Mascotas perdidas</li>
+      <li class="liGroup">Acerca de nosotros</li>
     </ul>
    </aside>
    <section id="postSection">
