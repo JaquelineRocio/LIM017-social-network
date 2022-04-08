@@ -2,8 +2,8 @@
 *{
     padding: 0;
     margin: 0;
-    /*font-family: roboto, sans-serif;*/
-    font-family: Pompiere;
+    font-family: roboto, sans-serif;
+    /* font-family: Pompiere; */
     list-style: none;
     }
 .gif{
@@ -171,7 +171,7 @@ button:hover{
     grid-template-rows: repeat(12,8.3%);
     width: 100vw;
     height: 100vh;
-    font-family: 'Bellefair', serif;
+    /*font-family: 'Bellefair', serif;*/
 } 
 #headerMain{
     grid-column: 1/span 12;
@@ -206,7 +206,7 @@ button:hover{
     font-weight: bold;
     /*margin: 20px 50px 20px 10px;*/
     padding: 0 20px;
-    font-family: 'Bellefair', serif;
+    /*font-family: 'Bellefair', serif;*/
 }
 #btnSignOut{
     display: none;
@@ -240,7 +240,7 @@ button:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Bellefair', serif;
+    /*font-family: 'Bellefair', serif;*/
 }
 .liGroup:hover{
     background: #F9DBDA;
@@ -269,7 +269,7 @@ button:hover{
     background: #25406D;
     border:1px solid #25406D;;
     border-radius: 4px;
-    font-family: 'Bellefair', serif;
+    /*font-family: 'Bellefair', serif;*/
     margin: 7px 0;
 }
 #btnPost:hover{
@@ -282,7 +282,7 @@ button:hover{
     border: none;
     box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
     padding: 20px;
-    font-family: 'Bellefair', serif;
+    /*font-family: 'Bellefair', serif;*/
     font-size: 20px;
 }
 .cardPost {
@@ -322,6 +322,49 @@ overflow-x: hidden;
 .fa-solid, .fas {
 
     margin-right: 7%;
+}
+
+.modalDelete {
+    background: #f4bebc;
+    position: fixed;
+    z-index: 1;
+    padding: 100px;
+    width: 60%;
+    overflow: auto;
+    padding: 50px;
+    margin: auto;
+    border-radius: 15px;
+    font-size: 25px;
+    font-family:'Roboto', sans-serif;
+
+} 
+#modalContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+#modalContainer.zIndex{
+    z-index: 1;
+}
+.btnAccept{
+    margin: 3%;
+    padding: 5px;
+    width: 25%;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+}
+.btnCancel{
+    margin: 3%;
+    padding: 5px;
+    width: 25%;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
 }
  @media (min-width: 768px) and (max-width: 2640px) {
   
