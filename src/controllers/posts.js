@@ -18,7 +18,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     querySnapshot.forEach((doc) => {
       const post = doc.data();
-      console.log(typeof (post));
       if (post.description !== '') {
         html += `
         <div class="cardPost">
@@ -97,27 +96,21 @@ window.addEventListener('DOMContentLoaded', async () => {
 //   //newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
 //   console.log('funcionando');
 // }));
-// const btnDelete = newPostsContainer.querySelectorAll('.btnDelete');
-//     btnDelete.forEach((btn) => {
-//       btn.addEventListener('click', ({ target: { dataset } }) => {
-//         deletePost(dataset.id);
-//       });
-//     });
 // console.log(postForm.querySelectorAll('.btnCrud'));
 // postForm.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', (e) => {
 //   // newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
 //   console.log('funcionando', e);
 // }));
-console.log(postForm.querySelectorAll('.btnCrud'));
-postForm.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', (e) => {
-// newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
-  console.log('funcionando', e);
-}));
-console.log(postForm.querySelectorAll('.btnCrud'));
-postForm.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', (e) => {
-  // newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
-  console.log('funcionando', e);
-}));
+// console.log(postForm.querySelectorAll('.btnCrud'));
+// postForm.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', (e) => {
+// // newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
+//   console.log('funcionando', e);
+// }));
+// console.log(postForm.querySelectorAll('.btnCrud'));
+// postForm.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', (e) => {
+//   // newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
+//   console.log('funcionando', e);
+// }));
 
 postForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -132,7 +125,7 @@ postForm.addEventListener('submit', (e) => {
   postForm.reset();
 });
 
-postForm.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', () => {
-  postForm.querySelectorAll('.btnsPost').forEach((boton) => boton.classList.toggle('active'));
-  console.log('hola');
-}));
+// postForm.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', () => {
+//   postForm.querySelectorAll('.btnsPost').forEach((boton) => boton.classList.toggle('active'));
+//   console.log('hola');
+// }));

@@ -330,7 +330,7 @@ overflow-x: hidden;
     z-index: 1;
     padding: 100px;
     width: 60%;
-    overflow: auto;
+    /*overflow: auto;*/
     padding: 50px;
     margin: auto;
     border-radius: 15px;
