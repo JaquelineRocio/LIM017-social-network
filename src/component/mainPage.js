@@ -25,7 +25,9 @@ export const mainPage = () => {
   
     <form id="postForm">
     <div id="modalContainer"></div>
+ 
       <textarea id="postDescription" rows="3"></textarea><br>
+      <input type='file'>
         <button id="btnPost">Publicar</button>
     </form>
     <div id="newPost"></div>
