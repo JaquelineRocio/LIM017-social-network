@@ -45,6 +45,11 @@ window.onpopstate = () => {
 };
 divRoot.appendChild(component());
 
+/* const btnMenu = document.querySelector('#btnMenuContainer');
+const asideMain = document.querySelector('#asideMain');
+btnMenu.addEventListener('click', () => {
+  asideMain.classList.toggle('active');
+}); */
 const btnMenu = document.querySelector('#btnMenuContainer');
 const asideMain = document.querySelector('#asideMain');
 btnMenu.addEventListener('click', () => {
@@ -54,7 +59,7 @@ btnMenu.addEventListener('click', () => {
 // btnSignOut.addEventListener('click', () => {
 //   onNavigate('/login');
 // })
-//});
+// });
 
 // const btnCrud = postSection.querySelector('.btnCrud');
 // const btnsPost = postSection.querySelector('.btnsPost');

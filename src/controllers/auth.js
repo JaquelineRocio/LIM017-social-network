@@ -7,14 +7,30 @@
 // eslint-disable-next-line import/no-unresolved
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider,
+  sendEmailVerification, onAuthStateChanged,
 } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js';
 import { onNavigate } from '../main.js';
 
+const stateUser = () => {
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    const emailVerified = user.emailVerified;
+    const uid = user.uid;
+    if (emailVerified) {
+      onNavigate('/mainPage');
+    } else {
+      alert('verifica tu correo');
+    }
+  });
+};
+
 export const createUser = (email, password, wrongEmail, wrongPassword) => {
   const auth = getAuth();
-  return createUserWithEmailAndPassword(auth, email, password)
+  createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      onNavigate('/mainPage');
+      sendEmailVerification(auth.currentUser);
+      alert('Por favor revise su correo para confirmar');
+      onNavigate('/login');
       const user = userCredential.user;
       return user;
     })
@@ -24,14 +40,13 @@ export const createUser = (email, password, wrongEmail, wrongPassword) => {
       return errorMessage;
     });
 };
-
 export const signIn = (email, password, wrongEmail) => {
   const auth2 = getAuth();
   let result;
   signInWithEmailAndPassword(auth2, email, password)
     .then((userCredential) => {
       const user2 = userCredential.user;
-      onNavigate('/mainPage');
+      stateUser();
     })
     .catch((error) => {
       const errorCode = error.code;
