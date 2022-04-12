@@ -7,30 +7,30 @@ import {
   savePost, getPost, onGetPost, deletePost, getOnlyPost, updatePost,
 } from '../config/configFirestore.js';
 
-const postForm = document.getElementById('postForm');
-const modalContainer = document.getElementById('modalContainer');
-const newPost = document.getElementById('newPost');
 let editStatus = false;
 let id = '';
-window.addEventListener('DOMContentLoaded', async () => {
+export const showPosts = async (newPost) => {
+  const postForm = document.getElementById('postForm');
+const modalContainer = document.getElementById('modalContainer');
+//const newPost = document.getElementById('newPost');
   onGetPost((querySnapshot) => {
     let html='';
     querySnapshot.forEach((doc) => {
       const post = doc.data();
       if (post.description !== '') {
-       
         html += `
         <div class="cardPost">
         <p class="textPost">${post.description}</p>
-        <button class="btnCrud" data-id="${doc.id}">🗑️</button>
+        <button class="btnCrud" data-id="${doc.id}">▶</button>
         <div class="btnsPost">
-        <button class="btnDelete" data-id="${doc.id}">🗑️</button>
+        <button class="btnDelete" data-id="${doc.id}">🗑</button>
         <button class="btnEdit" data-id="${doc.id}">🖉</button>
         </div>
         </div>`;
       }
     });
 
+    // eslint-disable-next-line no-param-reassign
     newPost.innerHTML = html;
     // querySnapshot.forEach((doc) => {
     //   const post = doc.data();
@@ -107,12 +107,9 @@ window.addEventListener('DOMContentLoaded', async () => {
       });
     });
   });
-});
+};
 
-newPost.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', () => {
-  //newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
-  console.log('funcionando');
-}));
+
 // console.log(postForm.querySelectorAll('.btnCrud'));
 // postForm.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', (e) => {
 //   // newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
@@ -129,18 +126,7 @@ newPost.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('clic
 //   console.log('funcionando', e);
 // }));
 
-postForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const description = postForm.postDescription;
-  if (!editStatus) {
-    savePost(description.value);
-  } else {
-    updatePost(id, { description: description.value });
-    editStatus = false;
-    postForm.btnPost.innerText = 'Publicar';
-  }
-  postForm.reset();
-});
+
 
 // postForm.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', () => {
 //   postForm.querySelectorAll('.btnsPost').forEach((boton) => boton.classList.toggle('active'));

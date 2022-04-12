@@ -1,6 +1,8 @@
 /* eslint-disable import/no-cycle */
 import { onNavigate } from '../main.js';
 import { exit } from '../controllers/auth.js';
+import { savePost, updatePost } from '../config/configFirestore.js';
+import { showPosts } from '../controllers/posts.js';
 
 export const mainPage = () => {
   const mainContainer = document.createElement('main');
@@ -36,5 +38,25 @@ export const mainPage = () => {
   mainContainer.querySelector('#btnSignOut').addEventListener('click', () => {
     exit().then(onNavigate('/login'));
   });
+  const postForm = mainContainer.querySelector('#postForm');
+  let editStatus = false;
+  postForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const description = postForm.postDescription;
+    if (!editStatus) {
+      savePost(description.value);
+    } else {
+      updatePost(id, { description: description.value });
+      editStatus = false;
+      postForm.btnPost.innerText = 'Publicar';
+    }
+    postForm.reset();
+  });
+  const newPost = mainContainer.querySelector('#newPost');
+  newPost.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', () => {
+    //newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
+    console.log('funcionando');
+  }));
+  showPosts(newPost);
   return mainContainer;
 };
