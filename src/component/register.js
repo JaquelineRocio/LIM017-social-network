@@ -38,13 +38,13 @@ export const register = () => {
         <option value="other">Otro</option>
       </select>
     </p>
+
+    <div id="inputPass">
+    <input type = "password" id="password" pattern=".{6,}" class='classInput' placeholder ="Contraseña"/><i id="iconEye" class="fa-solid fa-eye-slash"></i>
+    </div>
+
     <p>
-   
-    <input type = "password" placeholder ="Contraseña" id="password" pattern=".{6,}" class='classInput'/>
-    </p>
-    <p>
-   
-    <input type = "password" placeholder ="Confirmar Contraseña" id="validatePassword" pattern=".{6,}" class='classInput'/>
+    <input type = "password" placeholder ="Confirmar Contraseña" id="validatePassword" pattern=".{6,}" class='classInput'/><i id="iconEye2" class="fa-solid fa-eye-slash"></i>
     </p>
     <p id="wrongPassword"  class="error"></p>
     <button id="btnRegister" class ="button">Registrarse</button>
@@ -52,6 +52,22 @@ export const register = () => {
     </form>
     </section>`;
 
+  sectionRegister.querySelector('#iconEye').addEventListener('click', () => {
+    const password = sectionRegister.querySelector('#password');
+    if (password.type === 'password') {
+      password.type = 'text';
+    } else {
+      password.type = 'password';
+    }
+  });
+  sectionRegister.querySelector('#iconEye2').addEventListener('click', () => {
+    const validatePassword = sectionRegister.querySelector('#validatePassword');
+    if (validatePassword.type === 'password') {
+      validatePassword.type = 'text';
+    } else {
+      validatePassword.type = 'password';
+    }
+  });
   sectionRegister.querySelector('#btnRegister').addEventListener('click', () => {
     const email = sectionRegister.querySelector('#email').value;
     const password = sectionRegister.querySelector('#password').value;
@@ -67,7 +83,6 @@ export const register = () => {
 
   registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
     const firstName = sectionRegister.querySelector('#firstName').value;
     const lastName = sectionRegister.querySelector('#lastName').value;
     const email = sectionRegister.querySelector('#email').value;
