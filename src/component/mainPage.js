@@ -1,6 +1,8 @@
 /* eslint-disable import/no-cycle */
 import { onNavigate } from '../main.js';
-import { exit } from '../controllers/auth.js';
+import { exit, dataUserGoogle } from '../controllers/auth.js';
+// import {
+//   savePost, updatePost } from '../config/configFirestore.js';
 
 export const mainPage = () => {
   const mainContainer = document.createElement('main');
@@ -12,6 +14,7 @@ export const mainPage = () => {
     <button id="btnSignOut"><i class="fa-solid fa-right-from-bracket"></i>Cerrar Sesión</button>
     <button id="btnMenuContainer"> <i class="fa-solid fa-bars"></i> </button>
    </header>
+   <div id='dataGoogle'><img id='imgPerfil'></div>
    <aside id="asideMain">
     <ul id="ulGroup">
       <li class="liGroup">Perfil</li>
@@ -35,6 +38,31 @@ export const mainPage = () => {
    </section>`;
   mainContainer.querySelector('#btnSignOut').addEventListener('click', () => {
     exit().then(onNavigate('/login'));
+  });
+
+  // let editStatus = false;
+  // let id = '';
+  // id = doc.id;
+  // const postForm = mainContainer.querySelector('#postForm')
+  // postForm.addEventListener('submit', (e) => {
+  //   e.preventDefault();
+  //   const description = postForm.postDescription;
+  //   if (!editStatus) {
+  //     savePost(description.value);
+  //   } else {
+  //     updatePost(id, { description: description.value });
+  //     editStatus = false;
+  //     postForm.btnPost.innerText = 'Publicar';
+  //   }
+  //   postForm.reset();
+  // });
+
+  dataUserGoogle().providerData.forEach((profile) => {
+    const nameUserGoogle = profile.displayName;
+    const emailUserGoogle = profile.email;
+    const photoUserGoogle = profile.photoURL;
+    mainContainer.querySelector('#dataGoogle').innerText = nameUserGoogle + emailUserGoogle;
+    // mainContainer.querySelector('#imgPerfil').src = photoUserGoogle;
   });
   return mainContainer;
 };

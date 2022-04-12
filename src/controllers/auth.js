@@ -22,7 +22,7 @@ export const createUser = (email, password, wrongEmail, wrongPassword) => {
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       sendEmailVerification(auth.currentUser);
-     // alert('Por favor revise su correo para confirmar');
+      // alert('Por favor revise su correo para confirmar');
       const user = userCredential.user;
       return user;
     })
@@ -73,7 +73,17 @@ export const signIn = (email, password, wrongEmail) => {
     });
   return result;
 };
-
+export const dataUserGoogle = () => {
+  const auth = getAuth();
+  const user1 = auth.currentUser;
+  if (user1 !== null) {
+    user1.providerData.forEach((profile) => {
+      const nameUserGoogle = profile.displayName;
+      const emailUserGoogle = profile.email;
+      const photoUserGoogle = profile.photoURL;
+    });
+  } return user1;
+};
 export const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
