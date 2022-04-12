@@ -14,17 +14,17 @@ let editStatus = false;
 let id = '';
 window.addEventListener('DOMContentLoaded', async () => {
   onGetPost((querySnapshot) => {
-    let html = '';
-
+    let html='';
     querySnapshot.forEach((doc) => {
       const post = doc.data();
       if (post.description !== '') {
+       
         html += `
         <div class="cardPost">
         <p class="textPost">${post.description}</p>
-        <button class="btnCrud" data-id="${doc.id}">🗑</button>
+        <button class="btnCrud" data-id="${doc.id}">🗑️</button>
         <div class="btnsPost">
-        <button class="btnDelete" data-id="${doc.id}">🗑</button>
+        <button class="btnDelete" data-id="${doc.id}">🗑️</button>
         <button class="btnEdit" data-id="${doc.id}">🖉</button>
         </div>
         </div>`;
@@ -32,6 +32,23 @@ window.addEventListener('DOMContentLoaded', async () => {
     });
 
     newPost.innerHTML = html;
+    // querySnapshot.forEach((doc) => {
+    //   const post = doc.data();
+    //   if (post.description !== '') {
+    //     const cardPost = document.createElement('div');
+    //     cardPost.classList.add('cardPost');
+    //     cardPost.innerHTML += ` <p class="textPost">${post.description}</p>
+    //     <button class="btnCrud" data-id="${doc.id}">❤</button>
+    //     <div class="btnsPost">
+    //     <button class="btnDelete" data-id="${doc.id}">🗑</button>
+    //     <button class="btnEdit" data-id="${doc.id}">🖉</button>
+    //     </div>
+    //     `;
+    //     newPost.appendChild(cardPost);
+    //   }
+    // });
+
+    //newPost.innerHTML = html;
     const btnDelete = newPost.querySelectorAll('.btnDelete');
     console.log(btnDelete);
     btnDelete.forEach((btn) => {
@@ -92,10 +109,10 @@ window.addEventListener('DOMContentLoaded', async () => {
   });
 });
 
-// newPostsContainer.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', () => {
-//   //newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
-//   console.log('funcionando');
-// }));
+newPost.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', () => {
+  //newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
+  console.log('funcionando');
+}));
 // console.log(postForm.querySelectorAll('.btnCrud'));
 // postForm.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', (e) => {
 //   // newPostsContainer.querySelector('.btnsPost').classList.toggle('active');

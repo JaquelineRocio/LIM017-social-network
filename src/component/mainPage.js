@@ -1,5 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { onNavigate } from '../main.js';
+import { exit } from '../controllers/auth.js';
 
 export const mainPage = () => {
   const mainContainer = document.createElement('main');
@@ -27,11 +28,13 @@ export const mainPage = () => {
     <div id="modalContainer"></div>
  
       <textarea id="postDescription" rows="3"></textarea><br>
-      <input type='file'>
+      <input type='file' value="foto" placeholder="hola"/>
         <button id="btnPost">Publicar</button>
     </form>
     <div id="newPost"></div>
    </section>`;
-  mainContainer.querySelector('#btnSignOut').addEventListener('click', () => onNavigate('/login'));
+  mainContainer.querySelector('#btnSignOut').addEventListener('click', () => {
+    exit().then(onNavigate('/login'));
+  });
   return mainContainer;
 };

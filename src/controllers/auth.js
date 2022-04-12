@@ -7,30 +7,22 @@
 // eslint-disable-next-line import/no-unresolved
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider,
-  sendEmailVerification, onAuthStateChanged,
+  sendEmailVerification, onAuthStateChanged, signOut,
 } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js';
 import { onNavigate } from '../main.js';
+import '../component/login.js';
 
-const stateUser = () => {
+export const exit = () => {
   const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    const emailVerified = user.emailVerified;
-    const uid = user.uid;
-    if (emailVerified) {
-      onNavigate('/mainPage');
-    } else {
-      alert('verifica tu correo');
-    }
-  });
+  return signOut(auth);
 };
 
 export const createUser = (email, password, wrongEmail, wrongPassword) => {
   const auth = getAuth();
-  createUserWithEmailAndPassword(auth, email, password)
+  return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       sendEmailVerification(auth.currentUser);
-      alert('Por favor revise su correo para confirmar');
-      onNavigate('/login');
+     // alert('Por favor revise su correo para confirmar');
       const user = userCredential.user;
       return user;
     })
@@ -46,7 +38,15 @@ export const signIn = (email, password, wrongEmail) => {
   signInWithEmailAndPassword(auth2, email, password)
     .then((userCredential) => {
       const user2 = userCredential.user;
-      stateUser();
+      onAuthStateChanged(auth2, (user) => {
+        const emailVerified = user.emailVerified;
+        const uid = user.uid;
+        if (emailVerified) {
+          onNavigate('/mainPage');
+        } else {
+          wrongEmail.innerText = 'Verifique su email';
+        }
+      });
     })
     .catch((error) => {
       const errorCode = error.code;
