@@ -2,7 +2,7 @@
 // Import the functions you need from the SDKs you need
 // eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js';
-
+//import { getStorage } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-storage.js';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,3 +21,4 @@ const firebaseConfig = {
 // Initialize Firebase
 // eslint-disable-next-line no-unused-vars
 const app = initializeApp(firebaseConfig);
+//const storage = getStorage(firebaseApp);

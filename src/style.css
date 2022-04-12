@@ -437,7 +437,12 @@ overflow-x: hidden;
     #postSection{
         width: 80vw;
     }
-  
+    #modalContainer{
+        width: 80%;
+    }
+    .modalDelete{
+        width: 40%;
+    }
  }
    /* .gifSmall{
         display:none;

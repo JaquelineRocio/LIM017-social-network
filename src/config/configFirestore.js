@@ -27,3 +27,4 @@ export const saveUsersData = (firstName, lastName, email, birthday) => {
     firstName, lastName, email, birthday,
   });
 };
+export const postRef = (users, user, posts, post) => doc(db, users, user, posts, post);

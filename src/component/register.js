@@ -47,6 +47,7 @@ export const register = () => {
     <input type = "password" placeholder ="Confirmar Contraseña" id="validatePassword" pattern=".{6,}" class='classInput'/><i id="iconEye2" class="fa-solid fa-eye-slash"></i>
     </p>
     <p id="wrongPassword"  class="error"></p>
+    
     <button id="btnRegister" class ="button">Registrarse</button>
     <button type="button" id="btnRedirectsLogin" class="redirect">Si ya tienes cuenta, Ingresa aquí</button>
     </form>
@@ -75,7 +76,16 @@ export const register = () => {
     const wrongPassword = sectionRegister.querySelector('#wrongPassword');
     createUser(email, password, wrongEmail, wrongPassword)
       .then((errorCode) => {
-        wrongPassword.innerText = errorRegister(errorCode);
+        if (errorCode.emailVerified === false) {
+          wrongPassword.innerText = 'Verifica tu correo';
+          wrongPassword.style.color = 'blue';
+
+          setTimeout(() => {
+            onNavigate('/login');
+          }, 3000);
+        } else {
+          wrongPassword.innerText = errorRegister(errorCode);
+        }
       });
   });
 
