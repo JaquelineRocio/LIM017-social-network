@@ -376,8 +376,14 @@ overflow-x: hidden;
 }
 #iconEye2{
     position: absolute;
-    bottom:18.5%;
-    left:80%;
+    bottom: 41.5%;
+    left: 86.5%;
+}
+#iconEye3{
+    position: absolute;
+    bottom: 55.5%;
+    left: 82.5%;
+ 
 }
 .inputPass{
     position: relative;
@@ -386,6 +392,9 @@ overflow-x: hidden;
 img#dataGoogle {
     height: 80%;
     border-radius: 50%;
+}
+button.btnsCrud {
+    height: 20%;
 }
  @media (min-width: 768px) and (max-width: 2640px) {
   
@@ -450,6 +459,10 @@ img#dataGoogle {
     }
     .modalDelete{
         width: 40%;
+    }
+    #iconEye3{
+        bottom: 53.5%;
+        left: 82.5%;
     }
  }
    /* .gifSmall{

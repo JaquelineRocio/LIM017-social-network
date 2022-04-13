@@ -16,7 +16,7 @@ export const login = () => {
   
    </p>
     <p>
-   <input type = "password" id="password" pattern=".{6,}" class='classInput' placeholder ="Contraseña" required/>
+   <input type = "password" id="password" pattern=".{6,}" class='classInput' placeholder ="Contraseña" required/><i id="iconEye3" class="fa-solid fa-eye-slash"></i>
    <p id="wrongEmail"  class="error"></p>
    </p>
    <button id="btnLogin" class ="button">Ingresar</button>
@@ -35,6 +35,18 @@ export const login = () => {
   sectionLogin.querySelector('#signInGoogle').addEventListener('click', () => signInWithGoogle());
   sectionLogin.querySelector('#signInFacebook').addEventListener('click', () => signInWithFacebook());
   sectionLogin.querySelector('#btnRedirectsRegister').addEventListener('click', () => onNavigate('/register'));
-
+  sectionLogin.querySelector('#iconEye3').addEventListener('click', () => {
+    const password = sectionLogin.querySelector('#password');
+    const iconEye3 = sectionLogin.querySelector('#iconEye3');
+    if (password.type === 'password') {
+      password.type = 'text';
+      iconEye3.classList.remove('fa-eye-slash');
+      iconEye3.classList.add('fa-eye');
+    } else {
+      password.type = 'password';
+      iconEye3.classList.add('fa-eye-slash');
+      iconEye3.classList.remove('fa-eye');
+    }
+  });
   return sectionLogin;
 };
