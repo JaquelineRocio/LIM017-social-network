@@ -121,7 +121,7 @@ export const mainPage = () => {
           postForm.postDescription.value = post.description;
           editStatus = true;
           id = doc.id;
-          postForm.btnPost.innerText = 'Guadar Cambios';
+          postForm.btnPost.innerText = 'Guardar Cambios';
         });
       });
       mainContainer.querySelectorAll('.btnsCrud').forEach((btnCrud) => {

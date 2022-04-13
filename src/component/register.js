@@ -43,7 +43,7 @@ export const register = () => {
     </div>
 
     <div class="inputPass">
-    <input type = "password" placeholder ="Confirmar Contraseña" id="validatePassword" pattern=".{6,}" class='classInput'/><i id="iconEye2" class="fa-solid fa-eye-slash"></i>
+    <input type = "password" placeholder ="Confirmar Contraseña" id="validatePassword" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$" class='classInput'/><i id="iconEye2" class="fa-solid fa-eye-slash"></i>
     </div>
     <p id="wrongPassword"  class="error"></p>
     
@@ -82,19 +82,23 @@ export const register = () => {
     const password = sectionRegister.querySelector('#password').value;
     const wrongEmail = sectionRegister.querySelector('#wrongEmail');
     const wrongPassword = sectionRegister.querySelector('#wrongPassword');
-    createUser(email, password, wrongEmail, wrongPassword)
-      .then((errorCode) => {
-        if (errorCode.emailVerified === false) {
-          wrongPassword.innerText = 'Verifica tu correo';
-          wrongPassword.style.color = 'blue';
-
-          setTimeout(() => {
-            onNavigate('/login');
-          }, 3000);
-        } else {
-          wrongPassword.innerText = errorRegister(errorCode);
-        }
-      });
+    const passwordVerified = sectionRegister.querySelector('#validatePassword').value;
+    if (password === passwordVerified) {
+      createUser(email, password, wrongEmail, wrongPassword)
+        .then((errorCode) => {
+          if (errorCode.emailVerified === false) {
+            wrongPassword.innerText = 'Verifica tu correo';
+            wrongPassword.style.color = 'blue';
+            setTimeout(() => {
+              onNavigate('/login');
+            }, 3000);
+          } else {
+            wrongPassword.innerText = errorRegister(errorCode);
+          }
+        });
+    } else {
+      wrongPassword.innerText = 'Las contraseñas no coinciden';
+    }
   });
 
   const registerForm = sectionRegister.querySelector('#registerForm');
@@ -107,6 +111,7 @@ export const register = () => {
     const email = sectionRegister.querySelector('#email').value;
     const phoneNumber = sectionRegister.querySelector('#phoneNumber').value;
     const birthday = sectionRegister.querySelector('#birthday').value;
+
     saveUsersData(firstName, lastName, email, birthday);
   });
   registerForm.querySelector('#btnRedirectsLogin').addEventListener('click', () => onNavigate('/login'));
