@@ -50,11 +50,7 @@ const asideMain = document.querySelector('#asideMain');
 btnMenu.addEventListener('click', () => {
   asideMain.classList.toggle('active');
 }); */
-const btnMenu = document.querySelector('#btnMenuContainer');
-const asideMain = document.querySelector('#asideMain');
-btnMenu.addEventListener('click', () => {
-  asideMain.classList.toggle('active');
-});
+
 // const btnSignOut = document.querySelector('#btnSignOut');
 // btnSignOut.addEventListener('click', () => {
 //   onNavigate('/login');
