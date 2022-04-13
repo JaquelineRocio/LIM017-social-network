@@ -311,16 +311,18 @@ overflow-x: hidden;
     font-size: 25px;
 }
 .btnsPost {
-    display: inline-flex;
+    display: none;
     flex-direction: column;
     align-items: flex-end;
+}
+.btnsPost.active{
+    display: block;
 }
 .textPost{
     flex-grow: 1;
     font-family: 'Bellefair', serif;
 }
 .fa-solid, .fas {
-
     margin-right: 7%;
 }
 
