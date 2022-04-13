@@ -38,21 +38,45 @@ export const register = () => {
         <option value="other">Otro</option>
       </select>
     </p>
-    <p>
-   
-    <input type = "password" placeholder ="Contraseña" id="password" pattern=".{6,}" class='classInput'/>
-    </p>
-    <p>
-   
-    <input type = "password" placeholder ="Confirmar Contraseña" id="validatePassword" pattern=".{6,}" class='classInput'/>
-    </p>
+    <div class="inputPass">
+    <input type = "password" id="password" pattern=".{6,}" class='classInput' placeholder ="Contraseña"/><i id="iconEye" class="fa-solid fa-eye-slash"></i>
+    </div>
+
+    <div class="inputPass">
+    <input type = "password" placeholder ="Confirmar Contraseña" id="validatePassword" pattern=".{6,}" class='classInput'/><i id="iconEye2" class="fa-solid fa-eye-slash"></i>
+    </div>
     <p id="wrongPassword"  class="error"></p>
     
     <button id="btnRegister" class ="button">Registrarse</button>
     <button type="button" id="btnRedirectsLogin" class="redirect">Si ya tienes cuenta, Ingresa aquí</button>
     </form>
     </section>`;
-
+  sectionRegister.querySelector('#iconEye').addEventListener('click', () => {
+    const password = sectionRegister.querySelector('#password');
+    const iconEye = sectionRegister.querySelector('#iconEye');
+    if (password.type === 'password') {
+      password.type = 'text';
+      iconEye.classList.remove('fa-eye-slash');
+      iconEye.classList.add('fa-eye');
+    } else {
+      password.type = 'password';
+      iconEye.classList.add('fa-eye-slash');
+      iconEye.classList.remove('fa-eye');
+    }
+  });
+  sectionRegister.querySelector('#iconEye2').addEventListener('click', () => {
+    const validatePassword = sectionRegister.querySelector('#validatePassword');
+    const iconEye2 = sectionRegister.querySelector('#iconEye2');
+    if (validatePassword.type === 'password') {
+      validatePassword.type = 'text';
+      iconEye2.classList.remove('fa-eye-slash');
+      iconEye2.classList.add('fa-eye');
+    } else {
+      validatePassword.type = 'password';
+      iconEye2.classList.add('fa-eye-slash');
+      iconEye2.classList.remove('fa-eye');
+    }
+  });
   sectionRegister.querySelector('#btnRegister').addEventListener('click', () => {
     const email = sectionRegister.querySelector('#email').value;
     const password = sectionRegister.querySelector('#password').value;

@@ -22,7 +22,6 @@ export const createUser = (email, password, wrongEmail, wrongPassword) => {
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       sendEmailVerification(auth.currentUser);
-     // alert('Por favor revise su correo para confirmar');
       const user = userCredential.user;
       return user;
     })
@@ -88,7 +87,6 @@ export const signInWithGoogle = () => {
       const errorMessage = error.message;
       const email = error.email;
       const credential = GoogleAuthProvider.credentialFromError(error);
-      console.log(errorCode, errorMessage, email, credential);
     });
 };
 

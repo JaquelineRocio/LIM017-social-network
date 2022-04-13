@@ -54,7 +54,7 @@ export const mainPage = () => {
   });
   const newPost = mainContainer.querySelector('#newPost');
   newPost.querySelectorAll('.btnCrud').forEach((btn) => btn.addEventListener('click', () => {
-    //newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
+    // newPostsContainer.querySelector('.btnsPost').classList.toggle('active');
     console.log('funcionando');
   }));
   showPosts(newPost);

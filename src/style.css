@@ -366,6 +366,19 @@ overflow-x: hidden;
     border-radius: 5px;
     border: none;
 }
+#iconEye{
+    position: absolute;
+    bottom:43%;
+    left:87%;
+}
+#iconEye2{
+    position: absolute;
+    bottom:18.5%;
+    left:80%;
+}
+.inputPass{
+    position: relative;
+}
  @media (min-width: 768px) and (max-width: 2640px) {
   
     .sectionHome{
