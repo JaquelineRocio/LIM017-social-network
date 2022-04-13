@@ -123,7 +123,7 @@ export const mainPage = () => {
       });
       mainContainer.querySelectorAll('.btnsCrud').forEach((btnCrud) => {
         btnCrud.addEventListener('click', () => {
-          //mainContainer.querySelectorAll('.btnsPost').forEach((btnPost) => btnPost.classList.toggle('active'));
+          // mainContainer.querySelectorAll('.btnsPost').forEach((btnPost) => btnPost.classList.toggle('active'));
           mainContainer.querySelector('.btnsPost').classList.toggle('active');
         });
       });
