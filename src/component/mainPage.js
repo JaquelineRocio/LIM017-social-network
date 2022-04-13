@@ -1,9 +1,10 @@
 /* eslint-disable import/no-cycle */
 import { onNavigate } from '../main.js';
-import { exit } from '../controllers/auth.js';
+import { exit, dataUserGoogle } from '../controllers/auth.js';
 import {
   savePost, updatePost, onGetPost, deletePost, getOnlyPost,
 } from '../config/configFirestore.js';
+
 // import { showPosts } from '../controllers/posts.js';
 
 export const mainPage = () => {
@@ -13,9 +14,11 @@ export const mainPage = () => {
     <img id="logoMain" src="img/LogoRemasterizado.png">
     <input type="text" id="inputSearch" placeholder="Buscar ..."/>
     <div id="userName"></div>
+    <img id="dataGoogle"> 
     <button id="btnSignOut"><i class="fa-solid fa-right-from-bracket"></i>Cerrar Sesión</button>
     <button id="btnMenuContainer"> <i class="fa-solid fa-bars"></i> </button>
    </header>
+   
    <aside id="asideMain">
     <ul id="ulGroup">
       <li class="liGroup">Perfil</li>
@@ -137,5 +140,7 @@ export const mainPage = () => {
   btnMenu.addEventListener('click', () => {
     asideMain.classList.toggle('active');
   });
+ 
+  mainContainer.querySelector('#dataGoogle').setAttribute('src', dataUserGoogle().photoURL);
   return mainContainer;
 };

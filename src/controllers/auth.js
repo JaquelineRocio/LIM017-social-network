@@ -72,6 +72,14 @@ export const signIn = (email, password, wrongEmail) => {
     });
   return result;
 };
+export const dataUserGoogle = () => {
+  const auth = getAuth();
+  const user1 = auth.currentUser;
+  if (user1 !== null) {
+    user1.providerData.forEach((profile) => {
+    });
+  } return user1;
+};
 
 export const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
@@ -82,6 +90,7 @@ export const signInWithGoogle = () => {
       const token = credential.accessToken;
       const user = result.user;
       onNavigate('/mainPage');
+      return user;
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;

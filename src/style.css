@@ -183,6 +183,7 @@ button:hover{
 }
 #logoMain{
     height: 100%;
+    
     /* margin: 15px 40px 10px 50px; */
 }
 
@@ -381,6 +382,11 @@ overflow-x: hidden;
 .inputPass{
     position: relative;
 }
+
+img#dataGoogle {
+    height: 80%;
+    border-radius: 50%;
+}
  @media (min-width: 768px) and (max-width: 2640px) {
   
     .sectionHome{
@@ -423,6 +429,7 @@ overflow-x: hidden;
     }
     #logoMain{
         height: 130%;
+        margin-right: 12%;
     }
     #btnMenuContainer{
         display: none;
