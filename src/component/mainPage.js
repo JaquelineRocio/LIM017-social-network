@@ -130,6 +130,7 @@ export const mainPage = () => {
     });
   };
   const newPost = mainContainer.querySelector('#newPost');
+
   showPosts(newPost);
   const btnMenu = mainContainer.querySelector('#btnMenuContainer');
   const asideMain = mainContainer.querySelector('#asideMain');
