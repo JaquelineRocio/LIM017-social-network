@@ -31,9 +31,24 @@ export const createUser = (email, password, wrongEmail, wrongPassword) => {
       return errorMessage;
     });
 };
+export const userState = () => {
+  const auth = getAuth();
+  return onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.email;
+      return uid;
+      // ...
+    }
+    // User is signed out
+    // ...
+    return 'user is signed out';
+  });
+};
+
 export const signIn = (email, password, wrongEmail) => {
   const auth2 = getAuth();
-  let result;
   signInWithEmailAndPassword(auth2, email, password)
     .then((userCredential) => {
       const user2 = userCredential.user;
@@ -70,7 +85,6 @@ export const signIn = (email, password, wrongEmail) => {
           wrongEmail.innerText = errorCode;
       }
     });
-  return result;
 };
 export const dataUserGoogle = () => {
   const auth = getAuth();

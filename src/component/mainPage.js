@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js';
 import { onNavigate } from '../main.js';
-import { exit, dataUserGoogle } from '../controllers/auth.js';
+import { exit, dataUserGoogle, userState } from '../controllers/auth.js';
 import {
   savePost, updatePost, onGetPost, deletePost, getOnlyPost,
 } from '../config/configFirestore.js';
@@ -16,7 +17,7 @@ export const mainPage = () => {
     <div id="userName"></div>
     <img id="dataGoogle"> 
     <button id="btnSignOut"><i class="fa-solid fa-right-from-bracket"></i>Cerrar Sesión</button>
-    <button id="btnMenuContainer"> <i class="fa-solid fa-bars"></i> </button>
+    <button id="btnMenuContainer"> <i class="fa-solid fa-bars"></i> </button> 
    </header>
    
    <aside id="asideMain">
@@ -43,24 +44,12 @@ export const mainPage = () => {
   mainContainer.querySelector('#btnSignOut').addEventListener('click', () => {
     exit().then(onNavigate('/login'));
   });
-  const postForm = mainContainer.querySelector('#postForm');
-  let editStatus = false;
-  let id = '';
-  postForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const description = postForm.postDescription;
-    if (!editStatus) {
-      savePost(description.value);
-    } else {
-      updatePost(id, { description: description.value });
-      editStatus = false;
-      postForm.btnPost.innerText = 'Publicar';
-    }
-    postForm.reset();
-  });
   const showPosts = async (newPost) => {
     const modalContainer = mainContainer.querySelector('#modalContainer');
     onGetPost((querySnapshot) => {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      let contLike = 0;
       let html = '';
       querySnapshot.forEach((doc) => {
         const post = doc.data();
@@ -68,17 +57,24 @@ export const mainPage = () => {
           html += `
           <div class="cardPost">
             <p class="textPost">${post.description}</p>
-            <button class="btnsCrud" data-id="${doc.id}"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+            <button class="btnsCrud" data-id="${doc.id}">🆎</button>
             <div class="btnsPost">
               <button class="btnDelete" data-id="${doc.id}">🗑</button>
               <button class="btnEdit" data-id="${doc.id}">🖉</button>
             </div>
+            <div><button class="btnLikes" data-id="${doc.id}" > 🤍</button> <span>${post.likes}</span> </div><br>
+            <div> -------------->${post.date.toDate()} </div>
           </div>`;
         }
       });
 
       // eslint-disable-next-line no-param-reassign
       newPost.innerHTML = html;
+      const btnLikes = newPost.querySelectorAll('.btnLikes');
+      btnLikes.forEach((btn) => btn.addEventListener('click', ({ target: { dataset } }) => {
+        // eslint-disable-next-line no-plusplus
+       getOnlyPost(dataset.id).then(v=>console.log(v.data().likes= v.data().likes+1 ));
+      }));
 
       const btnDelete = newPost.querySelectorAll('.btnDelete');
       btnDelete.forEach((btn) => {
@@ -126,12 +122,26 @@ export const mainPage = () => {
       });
       mainContainer.querySelectorAll('.btnsCrud').forEach((btnCrud) => {
         btnCrud.addEventListener('click', () => {
-          //mainContainer.querySelectorAll('.btnsPost').forEach((btnPost) => btnPost.classList.toggle('active'));
           mainContainer.querySelector('.btnsPost').classList.toggle('active');
         });
       });
     });
   };
+  const postForm = mainContainer.querySelector('#postForm');
+  let editStatus = false;
+  let id = '';
+  postForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const description = postForm.postDescription;
+    if (!editStatus) {
+      savePost(description.value, 0);
+    } else {
+      updatePost(id, { description: description.value });
+      editStatus = false;
+      postForm.btnPost.innerText = 'Publicar';
+    }
+    postForm.reset();
+  });
   const newPost = mainContainer.querySelector('#newPost');
 
   showPosts(newPost);
@@ -140,7 +150,6 @@ export const mainPage = () => {
   btnMenu.addEventListener('click', () => {
     asideMain.classList.toggle('active');
   });
- 
-  mainContainer.querySelector('#dataGoogle').setAttribute('src', dataUserGoogle().photoURL);
+  // mainContainer.querySelector('#dataGoogle').setAttribute('src', dataUserGoogle().photoURL);
   return mainContainer;
 };

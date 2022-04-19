@@ -18,7 +18,7 @@ export const register = () => {
         <input id="lastName" placeholder ="Apellidos" name="lastName" type="text" class='classInput'/>
     </p>
     <p>
-        <input id="email" placeholder ="Email" name="email" type="text" class='classInput'/>
+    <input id="email" placeholder ="Email" name="email" type="text" class='classInput'/>  
         <p id="wrongEmail"  class="error"></p>
     </p>
     <p>
@@ -83,6 +83,7 @@ export const register = () => {
     const wrongEmail = sectionRegister.querySelector('#wrongEmail');
     const wrongPassword = sectionRegister.querySelector('#wrongPassword');
     const passwordVerified = sectionRegister.querySelector('#validatePassword').value;
+    console.log('email', email);
     if (password === passwordVerified) {
       createUser(email, password, wrongEmail, wrongPassword)
         .then((errorCode) => {

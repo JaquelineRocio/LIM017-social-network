@@ -2,18 +2,18 @@
 /* eslint-disable import/no-unresolved */
 import './configFirebase.js';
 import {
-  getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc,
+  getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc, query, orderBy,
 } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js';
 
 const db = getFirestore();
 // Guarda los posts
-export const savePost = (description) => {
-  addDoc(collection(db, 'Posts'), { description });
+export const savePost = (description, likes) => {
+  addDoc(collection(db, 'Posts'), { description, likes: 0, date: new Date(Date.now()) });
 };
 // Obtiene los posts
-export const getPost = () => getDocs(collection(db, 'Posts'));
+export const getPost = () => getDocs((collection(db, 'Posts')));
 // muestra los posts sin que se recargue la pagina
-export const onGetPost = (callback) => onSnapshot(collection(db, 'Posts'), callback);
+export const onGetPost = (callback) => onSnapshot(query(collection(db, 'Posts'), orderBy('date', 'desc')), callback);
 // elimina los posts
 export const deletePost = (id) => deleteDoc(doc(db, 'Posts', id));
 // llama a un solo post
