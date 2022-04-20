@@ -3,7 +3,7 @@ import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.
 import { onNavigate } from '../main.js';
 import { exit, dataUserGoogle, userState } from '../controllers/auth.js';
 import {
-  savePost, updatePost, onGetPost, deletePost, getOnlyPost,
+  savePost, updatePost, onGetPost, deletePost, getOnlyPost, dataUser,
 } from '../config/configFirestore.js';
 
 // import { showPosts } from '../controllers/posts.js';
@@ -22,11 +22,11 @@ export const mainPage = () => {
    
    <aside id="asideMain">
     <ul id="ulGroup">
-      <li class="liGroup">Perfil</li>
-      <li class="liGroup">Adopciones</li>
-      <li class="liGroup">Consejos</li>
-      <li class="liGroup">Mascotas perdidas</li>
-      <li class="liGroup">Acerca de nosotros</li>
+      <li class="liGroup"><i class="fa-solid fa-user icons"></i> Perfil</li>
+      <li class="liGroup"><i class="fa-solid fa-dog icons"></i>Adopciones</li>
+      <li class="liGroup"><i class="fa-solid fa-comment-dots icons"></i>Consejos</li>
+      <li class="liGroup"><i class="fa-solid fa-shield-dog icons"></i>Mascotas perdidas</li>
+      <li class="liGroup"><i class="fa-solid fa-circle-question icons"></i>Acerca de nosotros</li>
     </ul>
    </aside>
    
@@ -50,23 +50,24 @@ export const mainPage = () => {
   const showPosts = async (newPost) => {
     const modalContainer = mainContainer.querySelector('#modalContainer');
     onGetPost((querySnapshot) => {
-      const auth = getAuth();
-      const user = auth.currentUser;
-      const contLike = 0;
+      dataUser();
       let html = '';
       querySnapshot.forEach((doc) => {
         const post = doc.data();
         if (post.description !== '') {
           html += `
           <div class="cardPost">
+            
+            <div class= "nameUser"><div class="divUserPhoto"><img class="imgUserPost" src=${dataUser().photoURL}>${dataUser().displayName} </div><button class="btnsCrud" data-id="${doc.id}">...</button></div>
+            <div class= "divDate"> ${post.date.toDate().toString().slice(0, 21)} </div>
             <p class="textPost">${post.description}</p>
-            <button class="btnsCrud" data-id="${doc.id}">:ab:</button>
+            
             <div class="btnsPost">
               <button class="btnDelete" data-id="${doc.id}">🗑</button>
               <button class="btnEdit" data-id="${doc.id}">🖉</button>
             </div>
-            <div><button class="btnLikes" data-id="${doc.id}" > :white_heart:</button> <span>${post.likes}</span> </div><br>
-            <div> -------------->${post.date.toDate()} </div>
+            <div class="divLikes" ><button class="btnLikes" data-id="${doc.id}" > 🤍<span class="spanLikes">${post.likes}</span></button>  </div>
+            
           </div>`;
         }
       });
@@ -74,10 +75,25 @@ export const mainPage = () => {
       // eslint-disable-next-line no-param-reassign
       newPost.innerHTML = html;
       const btnLikes = newPost.querySelectorAll('.btnLikes');
-      btnLikes.forEach((btn) => btn.addEventListener('click', ({ target: { dataset } }) => {
-        // eslint-disable-next-line no-plusplus
-        getOnlyPost(dataset.id).then((v) => console.log(v.data().likes = v.data().likes + 1));
-      }));
+      let userLike = 0;
+      btnLikes.forEach((btn) => {
+        btn.addEventListener('click', async ({ target: { dataset } }) => {
+
+          const doc = await getOnlyPost(dataset.id);
+          const post = doc.data();
+          editStatus = true;
+          id = doc.id;
+          btnLikes.innerHTML = `❤ <span class="spanLikes">${post.likes}</span>`;
+          btnLikes.value = post.likes;
+          if (dataUser() && userLike < 1) {
+            console.log(dataUser().uid);
+           
+            // btnLikes.value = post.likes + 1;
+            userLike += 1;
+          }
+          updatePost(id, { likes: btnLikes.value + userLike });
+        });
+      });
 
       const btnDelete = newPost.querySelectorAll('.btnDelete');
       btnDelete.forEach((btn) => {
@@ -135,7 +151,7 @@ export const mainPage = () => {
     e.preventDefault();
     const description = postForm.postDescription;
     if (!editStatus) {
-      savePost(description.value, 0);
+      savePost(description.value, dataUser().uid);
     } else {
       updatePost(id, { description: description.value });
       editStatus = false;

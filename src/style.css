@@ -240,7 +240,7 @@ button:hover{
     height: 16%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding-left: 12%;
     /*font-family: 'Bellefair', serif;*/
 }
 .liGroup:hover{
@@ -284,17 +284,18 @@ button:hover{
     box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
     padding: 20px;
     /*font-family: 'Bellefair', serif;*/
-    font-size: 20px;
+    font-size: 14px;
 }
 .cardPost {
     width: 60%;
     margin: 20px auto;
     border-radius: 8px;
-    padding: 10px;
+    padding: 20px;
     border: 1px solid #26416d75;
     font-size: 18px;
     font-family: 'Bellefair', serif;
     display: flex;
+    flex-direction: column;
 }
 .btnDelete, .btnEdit{
     border: none;
@@ -321,7 +322,9 @@ overflow-x: hidden;
 }
 .textPost{
     flex-grow: 1;
-    font-family: 'Bellefair', serif;
+    margin: 20px 0;
+    text-align: left;
+    font-size: 12px;
 }
 .fa-solid, .fas {
     margin-right: 7%;
@@ -396,6 +399,40 @@ img#dataGoogle {
 button.btnsCrud {
     height: 20%;
 }
+.divDate {
+    font-size: 12px;
+    color: gray;
+  
+    display: flex;
+}
+.nameUser {
+    display: flex;
+    justify-content: space-between;
+}
+button.btnsCrud {
+   
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    background: none;
+}
+button.btnLikes {
+    border: none;
+    background: none;
+    margin-right: 2%;   
+}
+.divLikes {
+    display: flex;
+}
+.divUserPhoto {
+    display: flex;
+    align-items: center;
+}
+img.imgUserPost {
+    width: 34px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
  @media (min-width: 768px) and (max-width: 2640px) {
   
     .sectionHome{
@@ -429,7 +466,7 @@ button.btnsCrud {
     }
     #asideMain{
         
-        grid-column: 1/span 2;
+        grid-column: 1/span 3;
         grid-row: 2/span 11;
         display: flex;
         background-color: #f4bebc;
@@ -463,6 +500,9 @@ button.btnsCrud {
     #iconEye3{
         bottom: 53.5%;
         left: 82.5%;
+    }
+    i.icons {
+        font-size: 30px;
     }
  }
    /* .gifSmall{

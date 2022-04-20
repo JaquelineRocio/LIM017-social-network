@@ -4,11 +4,14 @@ import './configFirebase.js';
 import {
   getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc, query, orderBy,
 } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js';
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js';
 
 const db = getFirestore();
 // Guarda los posts
-export const savePost = (description, likes) => {
-  addDoc(collection(db, 'Posts'), { description, likes: 0, date: new Date(Date.now()) });
+export const savePost = (description, userId) => {
+  addDoc(collection(db, 'Posts'), {
+    description, likes: 0, date: new Date(Date.now()), userId,
+  });
 };
 // Obtiene los posts
 export const getPost = () => getDocs((collection(db, 'Posts')));
@@ -28,3 +31,9 @@ export const saveUsersData = (firstName, lastName, email, birthday) => {
   });
 };
 export const postRef = (users, user, posts, post) => doc(db, users, user, posts, post);
+
+export const dataUser = () => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  return user;
+};
