@@ -13,6 +13,16 @@ export const savePost = (description, userId) => {
     description, likes: 0, date: new Date(Date.now()), userId,
   });
 };
+export const getLikes = async () => {
+  const likes = await getDocs(collection(db, 'Posts', '2Qr0Wjspb0eFU1rNi8N2', 'Likes'));
+  console.log(likes.docs[0].data());
+};
+export const addLike = (postId, userId, like) => {
+  const likesCollection = collection(db, 'Posts', postId, 'Likes');
+  addDoc(likesCollection, {
+    userId, like,
+  });
+};
 // Obtiene los posts
 export const getPost = () => getDocs((collection(db, 'Posts')));
 // muestra los posts sin que se recargue la pagina

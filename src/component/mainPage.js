@@ -5,9 +5,10 @@ import { exit, dataUserGoogle, userState } from '../controllers/auth.js';
 import {
   savePost, updatePost, onGetPost, deletePost, getOnlyPost, dataUser,
 } from '../config/configFirestore.js';
-
+import { getLikes, addLike } from '../config/configFirestore.js';
 // import { showPosts } from '../controllers/posts.js';
-
+getLikes();
+addLike();
 export const mainPage = () => {
   const mainContainer = document.createElement('main');
   mainContainer.classList.add('mainPage');
@@ -87,7 +88,7 @@ export const mainPage = () => {
           btnLikes.value = post.likes;
           if (dataUser() && userLike < 1) {
             console.log(dataUser().uid);
-           
+           //addLike(post.id, dataUser().uid, 1 );
             // btnLikes.value = post.likes + 1;
             userLike += 1;
           }
@@ -124,6 +125,7 @@ export const mainPage = () => {
             modalDelete.style.display = 'none';
             modalContainer.classList.remove('zIndex');
           });
+
         });
       });
 
