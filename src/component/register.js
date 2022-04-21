@@ -43,7 +43,7 @@ export const register = () => {
     </div>
 
     <div class="inputPass">
-    <input type = "password" placeholder ="Confirmar Contraseña" id="validatePassword" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$" class='classInput'/><i id="iconEye2" class="fa-solid fa-eye-slash"></i>
+    <input type = "password" placeholder ="Confirmar Contraseña" id="validatePassword" pattern=".{6,}" class='classInput'/><i id="iconEye2" class="fa-solid fa-eye-slash"></i>
     </div>
     <p id="wrongPassword"  class="error"></p>
     
