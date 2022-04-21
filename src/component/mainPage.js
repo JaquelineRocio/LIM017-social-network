@@ -4,11 +4,12 @@ import { onNavigate } from '../main.js';
 import { exit, dataUserGoogle, userState } from '../controllers/auth.js';
 import {
   savePost, updatePost, onGetPost, deletePost, getOnlyPost, dataUser,
+  addLike,
 } from '../config/configFirestore.js';
-import { getLikes, addLike } from '../config/configFirestore.js';
+
 // import { showPosts } from '../controllers/posts.js';
-getLikes();
-addLike();
+//getLikes();
+
 export const mainPage = () => {
   const mainContainer = document.createElement('main');
   mainContainer.classList.add('mainPage');
@@ -79,7 +80,6 @@ export const mainPage = () => {
       let userLike = 0;
       btnLikes.forEach((btn) => {
         btn.addEventListener('click', async ({ target: { dataset } }) => {
-
           const doc = await getOnlyPost(dataset.id);
           const post = doc.data();
           editStatus = true;
@@ -87,8 +87,8 @@ export const mainPage = () => {
           btnLikes.innerHTML = `❤ <span class="spanLikes">${post.likes}</span>`;
           btnLikes.value = post.likes;
           if (dataUser() && userLike < 1) {
-            console.log(dataUser().uid);
-           //addLike(post.id, dataUser().uid, 1 );
+            console.log(id, 'doc', doc);
+            addLike(id, dataUser().uid);
             // btnLikes.value = post.likes + 1;
             userLike += 1;
           }
@@ -125,7 +125,6 @@ export const mainPage = () => {
             modalDelete.style.display = 'none';
             modalContainer.classList.remove('zIndex');
           });
-
         });
       });
 
