@@ -4,12 +4,13 @@ import { onNavigate } from '../main.js';
 import { exit, dataUserGoogle, userState } from '../controllers/auth.js';
 import {
   savePost, updatePost, onGetPost, deletePost, getOnlyPost, dataUser,
-  addLike,
+  addLike, getLikes, deleteLike,
 } from '../config/configFirestore.js';
 
 // import { showPosts } from '../controllers/posts.js';
-//getLikes();
 
+// const allLikes= getAllLikes();
+// console.log(allLikes);
 export const mainPage = () => {
   const mainContainer = document.createElement('main');
   mainContainer.classList.add('mainPage');
@@ -56,7 +57,7 @@ export const mainPage = () => {
       let html = '';
       querySnapshot.forEach((doc) => {
         const post = doc.data();
-        if (post.description !== '') {
+        if (post.description !== '' && post.description !== ' ') {
           html += `
           <div class="cardPost">
             
@@ -77,22 +78,24 @@ export const mainPage = () => {
       // eslint-disable-next-line no-param-reassign
       newPost.innerHTML = html;
       const btnLikes = newPost.querySelectorAll('.btnLikes');
-      let userLike = 0;
+      const userLike = 0;
       btnLikes.forEach((btn) => {
         btn.addEventListener('click', async ({ target: { dataset } }) => {
           const doc = await getOnlyPost(dataset.id);
+          console.log(dataset)
+          id = doc.id;
           const post = doc.data();
           editStatus = true;
-          id = doc.id;
-          btnLikes.innerHTML = `❤ <span class="spanLikes">${post.likes}</span>`;
-          btnLikes.value = post.likes;
-          if (dataUser() && userLike < 1) {
-            console.log(id, 'doc', doc);
+          const likes = await getLikes(id);
+          console.log(!likes.includes(dataUser().uid));
+          if (!likes.includes(dataUser().uid)) {
             addLike(id, dataUser().uid);
+          } else {
+            console.log('usuario repetido');
             // btnLikes.value = post.likes + 1;
-            userLike += 1;
+            deleteLike(id, dataUser().uid);
           }
-          updatePost(id, { likes: btnLikes.value + userLike });
+          updatePost(id, { likes: likes.length });
         });
       });
 
@@ -151,7 +154,7 @@ export const mainPage = () => {
   postForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const description = postForm.postDescription;
-    if (!editStatus) {
+    if (!editStatus && description.value !== '') {
       savePost(description.value, dataUser().uid);
     } else {
       updatePost(id, { description: description.value });
