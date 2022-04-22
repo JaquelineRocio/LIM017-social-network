@@ -2,7 +2,7 @@
 /* eslint-disable import/no-unresolved */
 import './configFirebase.js';
 import {
-  getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc, query, orderBy,
+  getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc, query, orderBy, collectionGroup,
 } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js';
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js';
 
@@ -13,16 +13,34 @@ export const savePost = (description, userId) => {
     description, likes: 0, date: new Date(Date.now()), userId,
   });
 };
-// export const getLikes = async () => {
-//   const likes = await getDocs(collection(db, 'Posts', '2Qr0Wjspb0eFU1rNi8N2', 'Likes'));
-//   console.log(likes.docs[0].data());
-// };
+export const getLikes = async (postId) => {
+  const likes = await getDocs(collection(db, 'Posts', postId, 'Likes'));
+  // return likes.docs[0].data().userId;
+  // console.log(likes.docs.data().userId);
+  const likesSize = likes.size;
+  const arrLikesUser = [];
+  for (let i = 0; i < likesSize; i++) {
+    arrLikesUser.push(likes.docs[i].data().userId);
+    console.log('dfdfd',likes.docs[i].data());
+  }
+
+  console.log(likes);
+  return arrLikesUser;
+};
+
 export const addLike = (postId, userId) => {
   const likesCollection = collection(db, 'Posts', postId, 'Likes');
   addDoc(likesCollection, {
     userId,
   });
 };
+export const deleteLike = (postId, userId) => {
+  // const likesCollection = collection(db, 'Posts', postId, 'Likes');
+  // const userDelete = getLikes(postId).then(v=>v.filter(e=> e == userId));
+  deleteDoc(doc(db, 'Posts', postId, 'Likes', userId));
+};
+
+export const getAllLikes = async () => getDocs(collectionGroup(db, 'Likes'));
 // Obtiene los posts
 export const getPost = () => getDocs((collection(db, 'Posts')));
 // muestra los posts sin que se recargue la pagina
