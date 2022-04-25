@@ -82,18 +82,19 @@ export const mainPage = () => {
       btnLikes.forEach((btn) => {
         btn.addEventListener('click', async ({ target: { dataset } }) => {
           const doc = await getOnlyPost(dataset.id);
-          console.log(dataset)
           id = doc.id;
           const post = doc.data();
           editStatus = true;
           const likes = await getLikes(id);
-          console.log(!likes.includes(dataUser().uid));
-          if (!likes.includes(dataUser().uid)) {
+          const likesUserId = likes.map((e) => e.data().userId);
+          const filterLike = likes.map((elem) => {
+            if (elem.data().userId == dataUser().uid) { return elem.id; }
+          });
+          if (!likesUserId.includes(dataUser().uid)) {
             addLike(id, dataUser().uid);
           } else {
-            console.log('usuario repetido');
             // btnLikes.value = post.likes + 1;
-            deleteLike(dataUser().uid);
+            deleteLike(id, filterLike.toString());
           }
           updatePost(id, { likes: likes.length });
         });
