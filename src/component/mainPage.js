@@ -93,7 +93,7 @@ export const mainPage = () => {
           } else {
             console.log('usuario repetido');
             // btnLikes.value = post.likes + 1;
-            deleteLike(id, dataUser().uid);
+            deleteLike(dataUser().uid);
           }
           updatePost(id, { likes: likes.length });
         });

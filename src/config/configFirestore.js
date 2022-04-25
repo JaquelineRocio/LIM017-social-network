@@ -21,7 +21,7 @@ export const getLikes = async (postId) => {
   const arrLikesUser = [];
   for (let i = 0; i < likesSize; i++) {
     arrLikesUser.push(likes.docs[i].data().userId);
-    console.log('dfdfd',likes.docs[i].data());
+    console.log('dfdfd',likes.docs[i].id);
   }
 
   console.log(likes);
@@ -34,10 +34,10 @@ export const addLike = (postId, userId) => {
     userId,
   });
 };
-export const deleteLike = (postId, userId) => {
-  // const likesCollection = collection(db, 'Posts', postId, 'Likes');
+export const deleteLike = (userId) => {
+   const likesCollection = (db, 'Posts', userId, 'Likes');
   // const userDelete = getLikes(postId).then(v=>v.filter(e=> e == userId));
-  deleteDoc(doc(db, 'Posts', postId, 'Likes', userId));
+  deleteDoc(doc(likesCollection));
 };
 
 export const getAllLikes = async () => getDocs(collectionGroup(db, 'Likes'));
