@@ -83,7 +83,6 @@ export const register = () => {
     const wrongEmail = sectionRegister.querySelector('#wrongEmail');
     const wrongPassword = sectionRegister.querySelector('#wrongPassword');
     const passwordVerified = sectionRegister.querySelector('#validatePassword').value;
-    console.log('email', email);
     if (password === passwordVerified) {
       createUser(email, password, wrongEmail, wrongPassword)
         .then((errorCode) => {

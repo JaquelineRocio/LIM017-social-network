@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js';
+import { getAuth } from '../config/firebase.js';
 import { onNavigate } from '../main.js';
 import { exit, dataUserGoogle, userState } from '../controllers/auth.js';
 import {

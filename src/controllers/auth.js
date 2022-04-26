@@ -8,7 +8,7 @@
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider,
   sendEmailVerification, onAuthStateChanged, signOut,
-} from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js';
+} from '../config/firebase.js';
 import { onNavigate } from '../main.js';
 import '../component/login.js';
 

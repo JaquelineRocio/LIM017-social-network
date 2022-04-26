@@ -1,0 +1,9 @@
+export const getAuth = () => Promise.resolve({});
+export const createUserWithEmailAndPasswordgetAuth = () => Promise.resolve({});
+export const signInWithEmailAndPasswordgetAuth = () => Promise.resolve({});
+export const GoogleAuthProvidergetAuth = () => Promise.resolve({});
+export const signInWithPopupgetAuth = () => Promise.resolve({});
+export const FacebookAuthProvidergetAuth = () => Promise.resolve({});
+export const sendEmailVerificationgetAuth = () => Promise.resolve({});
+export const onAuthStateChangedgetAuth = () => Promise.resolve({});
+export const signOutgetAuth = () => Promise.resolve({});

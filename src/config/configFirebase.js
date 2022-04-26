@@ -1,8 +1,7 @@
 /* eslint-disable import/no-unresolved */
 // Import the functions you need from the SDKs you need
 // eslint-disable-next-line import/no-unresolved
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js';
-import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js';
+import { initializeApp, getAuth, onAuthStateChanged } from './firebase.js';
 
 // import { getStorage } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-storage.js';
 // TODO: Add SDKs for Firebase products that you want to use
