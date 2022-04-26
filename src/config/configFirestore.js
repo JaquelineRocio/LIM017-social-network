@@ -2,9 +2,8 @@
 /* eslint-disable import/no-unresolved */
 import './configFirebase.js';
 import {
-  getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc, query, orderBy, collectionGroup,
-} from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js';
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js';
+  getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc, query, orderBy, collectionGroup, getAuth,
+} from './firebase.js';
 
 const db = getFirestore();
 // Guarda los posts
@@ -22,7 +21,6 @@ export const getLikes = async (postId) => {
   for (let i = 0; i < likesSize; i++) {
     arrLikesUser.push(likes.docs[i]);
   }
-
   return arrLikesUser;
 };
 
