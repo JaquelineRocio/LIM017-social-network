@@ -36,15 +36,16 @@ export const onNavigate = (pathname) => {
 };
 
 const component = routes[window.location.pathname];
-
 window.onpopstate = () => {
   while (divRoot.firstChild){
     divRoot.removeChild(divRoot.firstChild);
   }
   divRoot.appendChild(routes[window.location.pathname]());
 };
-divRoot.appendChild(component());
 
+window.onload = function () {
+  divRoot.appendChild(component());
+};
 /* const btnMenu = document.querySelector('#btnMenuContainer');
 const asideMain = document.querySelector('#asideMain');
 btnMenu.addEventListener('click', () => {

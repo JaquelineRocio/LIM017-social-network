@@ -62,3 +62,14 @@ export const dataUser = () => {
   const user = auth.currentUser;
   return user;
 };
+export const getUsers = async () => {
+  const users = await getDocs(collection(db, 'Users'));
+  // return likes.docs[0].data().userId;
+  // console.log(likes.docs.data().userId);
+  const usersSize = users.size;
+  const arrUsers = [];
+  for (let i = 0; i < usersSize; i++) {
+    arrUsers.push(users.uid);
+  }
+  return arrUsers;
+};

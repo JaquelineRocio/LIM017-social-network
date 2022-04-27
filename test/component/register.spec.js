@@ -1,4 +1,5 @@
 import { register } from '../../src/component/register.js';
+
 jest.mock('../../src/config/firebase.js');
 // jest.mock('../../src/controllers/auth.js');
 // jest.mock('../../src/config/configFirestore.js');
