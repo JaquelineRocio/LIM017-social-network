@@ -21,6 +21,7 @@ export const getLikes = async (postId) => {
   for (let i = 0; i < likesSize; i++) {
     arrLikesUser.push(likes.docs[i]);
   }
+  console.log(arrLikesUser);
   return arrLikesUser;
 };
 
@@ -33,7 +34,7 @@ export const addLike = (postId, userId) => {
 export const deleteLike = (postId, likeId) => {
   // const likesCollection = collection(db, 'Posts', postId, 'Likes');
   // const userDelete = getLikes(postId).then(v=>v.filter(e=> e == userId));
-  console.log(doc(db, 'Posts', postId, 'Likes', likeId));
+ // console.log(doc(db, 'Posts', postId, 'Likes', likeId));
   deleteDoc(doc(db, 'Posts', postId, 'Likes', likeId));
 };
 

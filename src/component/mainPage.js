@@ -87,6 +87,7 @@ export const mainPage = () => {
           editStatus = true;
           const likes = await getLikes(id);
           const likesUserId = likes.map((e) => e.data().userId);
+          console.log({likesUserId});
           const filterLike = likes.map((elem) => {
             if (elem.data().userId === dataUser().uid) { return elem.id; }
           });
