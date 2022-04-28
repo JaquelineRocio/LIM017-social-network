@@ -17,11 +17,10 @@ export const exit = () => {
   return signOut(auth);
 };
 
-export const createUser = (email, password, wrongEmail, wrongPassword) => {
+export const createUser = (email, password) => {
   const auth = getAuth();
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      
       sendEmailVerification(auth.currentUser);
       const user = userCredential.user;
       return user;

@@ -2,7 +2,7 @@
 /* eslint-disable import/no-unresolved */
 import './configFirebase.js';
 import {
-  getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc, query, orderBy, collectionGroup, getAuth,
+  getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc, query, orderBy, collectionGroup, getAuth, setDoc, 
 } from './firebase.js';
 
 const db = getFirestore();
@@ -51,8 +51,11 @@ export const getOnlyPost = (id) => getDoc(doc(db, 'Posts', id));
 export const updatePost = (id, newFields) => updateDoc(doc(db, 'Posts', id), newFields);
 
 // registra los datos del usuario
-export const saveUsersData = (firstName, lastName, email, birthday) => {
-  addDoc(collection(db, 'Users'), {
+export const saveUsersData = (id, firstName, lastName, email, birthday) => {
+  // addDoc(collection(db, 'Users'), {
+  //   firstName, lastName, email, birthday,
+  // });
+    setDoc(doc(db, 'Users', id), {
     firstName, lastName, email, birthday,
   });
 };
@@ -73,3 +76,4 @@ export const getUsers = async () => {
   }
   return arrUsers;
 };
+export const getUser = (id) => getDoc(doc(db, 'Users', id));

@@ -1,10 +1,9 @@
 /* eslint-disable import/no-cycle */
-import { getAuth } from '../config/firebase.js';
 import { onNavigate } from '../main.js';
 import { exit, dataUserGoogle, userState } from '../controllers/auth.js';
 import {
   savePost, updatePost, onGetPost, deletePost, getOnlyPost, dataUser,
-  addLike, getLikes, deleteLike,
+  addLike, getLikes, deleteLike, getUser, 
 } from '../config/configFirestore.js';
 
 // import { showPosts } from '../controllers/posts.js';
@@ -54,31 +53,49 @@ export const mainPage = () => {
   const postForm = mainContainer.querySelector('#postForm');
   let editStatus = false;
   let id = '';
+  postForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const description = postForm.postDescription;
+    if (!editStatus && description.value !== '') {
+      savePost(description.value, dataUser().uid);
+    } else {
+      updatePost(id, { description: description.value });
+      editStatus = false;
+      postForm.btnPost.innerText = 'Publicar';
+    }
+    postForm.reset();
+  });
+  const newPost = mainContainer.querySelector('#newPost');
+
+  // eslint-disable-next-line no-shadow
   const showPosts = async (newPost) => {
     const modalContainer = mainContainer.querySelector('#modalContainer');
     onGetPost((querySnapshot) => {
+    
       dataUser();
       let html = '';
       querySnapshot.forEach((doc) => {
+       // getUser(dataUser().uid).then(v=>console.log(v));
+        const userName = getUser(dataUser().uid).then(v=> v.data());
         const post = doc.data();
         if (post.description !== '' && post.description !== ' ') {
           html += `
-          <div class="cardPost">
-            
-            <div class= "nameUser"><div class="divUserPhoto"><img class="imgUserPost" src=${dataUser().photoURL}>${dataUser().displayName} </div><button class="btnsCrud" data-id="${doc.id}">...</button></div>
-            <div class= "divDate"> ${post.date.toDate().toString().slice(0, 21)} </div>
-            <p class="textPost">${post.description}</p>
-            
-            <div class="btnsPost">
-              <button class="btnDelete" data-id="${doc.id}">🗑</button>
-              <button class="btnEdit" data-id="${doc.id}">🖉</button>
-            </div>
-            <div class="divLikes" ><button class="btnLikes" data-id="${doc.id}" >🤍<span class="spanLikes">${post.likes}</span></button>  </div>
-            
-          </div>`;
+            <div class="cardPost">
+              
+              <div class= "nameUser"><div class="divUserPhoto"><img class="imgUserPost" src=${dataUser().photoURL}>${userName} </div><button class="btnsCrud" data-id="${doc.id}">...</button></div>
+              <div class= "divDate"> ${post.date.toDate().toString().slice(0, 21)} </div>
+              <p class="textPost">${post.description}</p>
+              
+              <div class="btnsPost">
+                <button class="btnDelete" data-id="${doc.id}">🗑</button>
+                <button class="btnEdit" data-id="${doc.id}">🖉</button>
+              </div>
+              <div class="divLikes" ><button class="btnLikes" data-id="${doc.id}" >🤍<span class="spanLikes">${post.likes}</span></button>  </div>
+              
+            </div>`;
         }
       });
-
+  
       // eslint-disable-next-line no-param-reassign
       newPost.innerHTML = html;
       const btnLikes = newPost.querySelectorAll('.btnLikes');
@@ -91,7 +108,7 @@ export const mainPage = () => {
           editStatus = true;
           const likes = await getLikes(id);
           const likesUserId = likes.map((e) => e.data().userId);
-          console.log({likesUserId});
+          console.log({ likesUserId });
           const filterLike = likes.map((elem) => {
             if (elem.data().userId === dataUser().uid) { return elem.id; }
           });
@@ -106,7 +123,6 @@ export const mainPage = () => {
           updatePost(id, { likes: likes.length });
         });
       });
-
       const btnDelete = newPost.querySelectorAll('.btnDelete');
       btnDelete.forEach((btn) => {
         btn.addEventListener('click', ({ target: { dataset } }) => {
@@ -126,7 +142,7 @@ export const mainPage = () => {
           modalDelete.appendChild(btnAccept);
           modalDelete.appendChild(btnCancel);
           modalContainer.appendChild(modalDelete);
-
+  
           btnAccept.addEventListener('click', () => {
             deletePost(dataset.id);
             modalDelete.style.display = 'none';
@@ -138,13 +154,13 @@ export const mainPage = () => {
           });
         });
       });
-
+  
       const btnEdit = newPost.querySelectorAll('.btnEdit');
       btnEdit.forEach((btn) => {
         btn.addEventListener('click', async ({ target: { dataset } }) => {
           const doc = await getOnlyPost(dataset.id);
           const post = doc.data();
-
+  
           postForm.postDescription.value = post.description;
           editStatus = true;
           id = doc.id;
@@ -158,21 +174,7 @@ export const mainPage = () => {
       });
     });
   };
-
-  postForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const description = postForm.postDescription;
-    if (!editStatus && description.value !== '') {
-      savePost(description.value, dataUser().uid);
-    } else {
-      updatePost(id, { description: description.value });
-      editStatus = false;
-      postForm.btnPost.innerText = 'Publicar';
-    }
-    postForm.reset();
-  });
-  const newPost = mainContainer.querySelector('#newPost');
-
+  
   showPosts(newPost);
   const btnMenu = mainContainer.querySelector('#btnMenuContainer');
   const asideMain = mainContainer.querySelector('#asideMain');
