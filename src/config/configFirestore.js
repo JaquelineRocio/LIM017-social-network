@@ -58,7 +58,6 @@ export const saveUsersData = (firstName, lastName, email, birthday) => {
 export const postRef = (users, user, posts, post) => doc(db, users, user, posts, post);
 
 export const dataUser = () => {
-  const auth = getAuth();
-  const user = auth.currentUser;
+  const user = getAuth().currentUser;
   return user;
 };

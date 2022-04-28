@@ -23,8 +23,8 @@ const firebaseConfig = {
 // eslint-disable-next-line no-unused-vars
 const app = initializeApp(firebaseConfig);
 // const storage = getStorage(firebaseApp);
-onAuthStateChanged(getAuth(), (user) => {
-  if (user) {
-    document.querySelector('#dataGoogle').src = user.photoURL;
-  }
-});
+// onAuthStateChanged(getAuth(), (user) => {
+//   if (user) {
+//     document.querySelector('#dataGoogle').src = user.photoURL;
+//   }
+// });
