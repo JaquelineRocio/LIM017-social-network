@@ -77,7 +77,8 @@ export const register = () => {
       iconEye2.classList.remove('fa-eye');
     }
   });
-  sectionRegister.querySelector('#btnRegister').addEventListener('click', () => {
+  sectionRegister.querySelector('#btnRegister').addEventListener('click', (e) => {
+    e.preventDefault();
     const email = sectionRegister.querySelector('#email').value;
     const password = sectionRegister.querySelector('#password').value;
     const wrongEmail = sectionRegister.querySelector('#wrongEmail');
@@ -86,6 +87,13 @@ export const register = () => {
     if (password === passwordVerified) {
       createUser(email, password, wrongEmail, wrongPassword)
         .then((errorCode) => {
+          if (typeof (errorCode) === 'object') {
+            const firstName = sectionRegister.querySelector('#firstName').value;
+            const lastName = sectionRegister.querySelector('#lastName').value;
+            const phoneNumber = sectionRegister.querySelector('#phoneNumber').value;
+            const birthday = sectionRegister.querySelector('#birthday').value;
+            saveUsersData(firstName, lastName, email, birthday);
+          }
           if (errorCode.emailVerified === false) {
             wrongPassword.innerText = 'Verifica tu correo';
             wrongPassword.style.color = 'blue';
@@ -95,6 +103,7 @@ export const register = () => {
           } else {
             wrongPassword.innerText = errorRegister(errorCode);
           }
+          console.log(typeof (errorCode));
         });
     } else {
       wrongPassword.innerText = 'Las contraseñas no coinciden';
@@ -102,18 +111,6 @@ export const register = () => {
   });
 
   const registerForm = sectionRegister.querySelector('#registerForm');
-
-  registerForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const firstName = sectionRegister.querySelector('#firstName').value;
-    const lastName = sectionRegister.querySelector('#lastName').value;
-    const email = sectionRegister.querySelector('#email').value;
-    const phoneNumber = sectionRegister.querySelector('#phoneNumber').value;
-    const birthday = sectionRegister.querySelector('#birthday').value;
-
-    saveUsersData(firstName, lastName, email, birthday);
-  });
   registerForm.querySelector('#btnRedirectsLogin').addEventListener('click', () => onNavigate('/login'));
   return sectionRegister;
 };

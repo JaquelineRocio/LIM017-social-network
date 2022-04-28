@@ -1,13 +1,13 @@
+console.log('este una muestra del mock');
 export const initializeApp = () => Promise.resolve({});
 export const getAuth = () => Promise.resolve({});
-export const createUserWithEmailAndPasswordgetAuth = () => Promise.resolve({});
-export const signInWithEmailAndPasswordgetAuth = () => Promise.resolve({});
-export class GoogleAuthProvidergetAuth {}
-export const signInWithPopupgetAuth = () => Promise.resolve({});
-
-export const sendEmailVerificationgetAuth = () => Promise.resolve({});
-export const onAuthStateChangedgetAuth = () => Promise.resolve({});
-export const signOutgetAuth = () => Promise.resolve({});
+export const createUserWithEmailAndPassword = () => Promise.resolve({});
+export const signInWithEmailAndPassword = () => Promise.resolve({});
+export class GoogleAuthProvider {}
+export const signInWithPopup = () => Promise.resolve({});
+export const sendEmailVerification = () => Promise.resolve({});
+export const onAuthStateChanged = () => Promise.resolve({});
+export const signOut = () => Promise.resolve({});
 export const getFirestore = () => Promise.resolve({});
 export const collection = () => Promise.resolve({});
 export const addDoc = () => Promise.resolve({});

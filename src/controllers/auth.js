@@ -21,6 +21,7 @@ export const createUser = (email, password, wrongEmail, wrongPassword) => {
   const auth = getAuth();
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
+      
       sendEmailVerification(auth.currentUser);
       const user = userCredential.user;
       return user;

@@ -73,7 +73,7 @@ export const mainPage = () => {
               <button class="btnDelete" data-id="${doc.id}">🗑</button>
               <button class="btnEdit" data-id="${doc.id}">🖉</button>
             </div>
-            <div class="divLikes" ><button class="btnLikes" data-id="${doc.id}" > 🤍<span class="spanLikes">${post.likes}</span></button>  </div>
+            <div class="divLikes" ><button class="btnLikes" data-id="${doc.id}" >🤍<span class="spanLikes">${post.likes}</span></button>  </div>
             
           </div>`;
         }
@@ -91,13 +91,16 @@ export const mainPage = () => {
           editStatus = true;
           const likes = await getLikes(id);
           const likesUserId = likes.map((e) => e.data().userId);
+          console.log({likesUserId});
           const filterLike = likes.map((elem) => {
-            if (elem.data().userId == dataUser().uid) { return elem.id; }
+            if (elem.data().userId === dataUser().uid) { return elem.id; }
           });
           if (!likesUserId.includes(dataUser().uid)) {
+            console.log('aumentar likes', likes);
             addLike(id, dataUser().uid);
           } else {
             // btnLikes.value = post.likes + 1;
+            console.log('disminuir likes', likes);
             deleteLike(id, filterLike.toString());
           }
           updatePost(id, { likes: likes.length });
