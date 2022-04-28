@@ -4,6 +4,7 @@ import { createUser } from '../controllers/auth.js';
 import { onNavigate } from '../main.js';
 import { saveUsersData } from '../config/configFirestore.js';
 import { errorRegister } from '../lib/errorHandler.js';
+import { dataUser } from '../config/configFirestore.js';
 
 export const register = () => {
   const sectionRegister = document.createElement('section');
@@ -85,25 +86,25 @@ export const register = () => {
     const wrongPassword = sectionRegister.querySelector('#wrongPassword');
     const passwordVerified = sectionRegister.querySelector('#validatePassword').value;
     if (password === passwordVerified) {
-      createUser(email, password, wrongEmail, wrongPassword)
-        .then((errorCode) => {
-          if (typeof (errorCode) === 'object') {
+      createUser(email, password)
+        .then((result) => {
+          if (typeof (result) === 'object') {
             const firstName = sectionRegister.querySelector('#firstName').value;
             const lastName = sectionRegister.querySelector('#lastName').value;
             const phoneNumber = sectionRegister.querySelector('#phoneNumber').value;
             const birthday = sectionRegister.querySelector('#birthday').value;
-            saveUsersData(firstName, lastName, email, birthday);
+            saveUsersData(dataUser().uid, firstName, lastName, email, birthday);
           }
-          if (errorCode.emailVerified === false) {
+          if (result.emailVerified === false) {
             wrongPassword.innerText = 'Verifica tu correo';
             wrongPassword.style.color = 'blue';
             setTimeout(() => {
               onNavigate('/login');
             }, 3000);
           } else {
-            wrongPassword.innerText = errorRegister(errorCode);
+            wrongPassword.innerText = errorRegister(result);
           }
-          console.log(typeof (errorCode));
+          console.log(typeof (result));
         });
     } else {
       wrongPassword.innerText = 'Las contraseñas no coinciden';

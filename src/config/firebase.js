@@ -2,7 +2,7 @@
 /* eslint-disable import/no-unresolved */
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js';
 import {
-  getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc, query, orderBy, collectionGroup,
+  getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc, query, orderBy, collectionGroup, setDoc, 
 } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js';
 
 import {
@@ -12,7 +12,7 @@ import {
 
 export { initializeApp };
 export {
-  getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc, query, orderBy, collectionGroup,
+  getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc, query, orderBy, collectionGroup, setDoc,
 };
 
 export {
