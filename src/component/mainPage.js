@@ -75,7 +75,7 @@ export const mainPage = () => {
         if (post.description !== '' && post.description !== ' ') {
           html += `
             <div class="cardPost">
-              <div class= "nameUser"><div class="divUserPhoto"><img class="imgUserPost" > </div><button class="btnsCrud" data-id="${doc.id}">...</button></div>
+              <div class= "nameUser" data-id="${doc.id}"><div class="divUserPhoto"><img class="imgUserPost" > </div><button class="btnsCrud" data-id="${doc.id}">...</button></div>
               <div class= "divDate"> ${post.date.toDate().toString().slice(0, 21)} </div>
               <p class="textPost">${post.description}</p>
               <div class="btnsPost">
@@ -85,16 +85,9 @@ export const mainPage = () => {
               <div class="divLikes" ><button class="btnLikes" data-id="${doc.id}" >🤍<span class="spanLikes">${post.likes}</span></button>  </div>
               
             </div>`;
-          console.log(post.userId);
           const userResult = await getUser(post.userId);
-          const nameDivs = newPost.querySelectorAll('.nameUser');
-          console.log(nameDivs);
-          nameDivs.forEach((div) => {
-            const p = document.createElement('p');
-            p.innerText = userResult.data().firstName;
-            div.appendChild(p);
-          });
-          console.log(userResult.data());
+          const nameDivs = newPost.querySelector(`[data-id="${doc.id}"]`);
+          nameDivs.innerText = userResult.data().firstName;
         }
       });
 
