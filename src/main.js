@@ -12,6 +12,7 @@ import { Home } from './component/home.js';
 import { login } from './component/login.js';
 import { register } from './component/register.js';
 import { mainPage } from './component/mainPage.js';
+import { profile } from './component/profile.js';
 
 const divRoot = document.getElementById('root');
 const routes = {
@@ -19,6 +20,7 @@ const routes = {
   '/login': login,
   '/register': register,
   '/mainPage': mainPage,
+  '/profile': profile,
 };
 
 export const onNavigate = (pathname) => {
