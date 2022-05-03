@@ -3,7 +3,7 @@ import { onNavigate } from '../main.js';
 import { exit, dataUserGoogle, userState } from '../controllers/auth.js';
 import {
   savePost, updatePost, onGetPost, deletePost, getOnlyPost, dataUser,
-  addLike, getLikes, deleteLike, getUser, 
+  addLike, getLikes, deleteLike, getUser,
 } from '../config/configFirestore.js';
 
 // import { showPosts } from '../controllers/posts.js';
@@ -17,10 +17,9 @@ export const mainPage = () => {
     <img id="logoMain" src="img/LogoRemasterizado.png">
     <input type="text" id="inputSearch" placeholder="Buscar ..."/>
     <div id="userName"></div>
-    <img id="dataGoogle" src=${dataUser().photoURL}> 
+    <img id="dataGoogle"> 
     <button id="btnSignOut"><i class="fa-solid fa-right-from-bracket"></i>Cerrar Sesión</button>
     <button id="btnMenuContainer"> <i class="fa-solid fa-bars"></i> </button> 
-    <button id="btnMenuContainersjnjkc">Perfil</button> 
    </header>
    
    <aside id="asideMain">
@@ -44,9 +43,6 @@ export const mainPage = () => {
     </form>
     <div id="newPost"></div>
    </section>`;
-  mainContainer.querySelector('#btnMenuContainersjnjkc').addEventListener('click', () => {
-    onNavigate('/profile');
-  });
   mainContainer.querySelector('#btnSignOut').addEventListener('click', () => {
     exit().then(onNavigate('/login'));
   });
@@ -71,21 +67,17 @@ export const mainPage = () => {
   const showPosts = async (newPost) => {
     const modalContainer = mainContainer.querySelector('#modalContainer');
     onGetPost((querySnapshot) => {
-    
-      dataUser();
       let html = '';
-      querySnapshot.forEach((doc) => {
-       // getUser(dataUser().uid).then(v=>console.log(v));
-        const userName = getUser(dataUser().uid).then(v=> v.data());
+      querySnapshot.forEach(async (doc) => {
         const post = doc.data();
+        let userName;
+
         if (post.description !== '' && post.description !== ' ') {
           html += `
             <div class="cardPost">
-              
-              <div class= "nameUser"><div class="divUserPhoto"><img class="imgUserPost" src=${dataUser().photoURL}>${userName} </div><button class="btnsCrud" data-id="${doc.id}">...</button></div>
+              <div class= "nameUser" data-id="${doc.id}"><div class="divUserPhoto"><img class="imgUserPost" > </div><button class="btnsCrud" data-id="${doc.id}">...</button></div>
               <div class= "divDate"> ${post.date.toDate().toString().slice(0, 21)} </div>
               <p class="textPost">${post.description}</p>
-              
               <div class="btnsPost">
                 <button class="btnDelete" data-id="${doc.id}">🗑</button>
                 <button class="btnEdit" data-id="${doc.id}">🖉</button>
@@ -93,9 +85,12 @@ export const mainPage = () => {
               <div class="divLikes" ><button class="btnLikes" data-id="${doc.id}" >🤍<span class="spanLikes">${post.likes}</span></button>  </div>
               
             </div>`;
+          const userResult = await getUser(post.userId);
+          const nameDivs = newPost.querySelector(`[data-id="${doc.id}"]`);
+          nameDivs.innerText = userResult.data().firstName;
         }
       });
-  
+
       // eslint-disable-next-line no-param-reassign
       newPost.innerHTML = html;
       const btnLikes = newPost.querySelectorAll('.btnLikes');
@@ -142,7 +137,7 @@ export const mainPage = () => {
           modalDelete.appendChild(btnAccept);
           modalDelete.appendChild(btnCancel);
           modalContainer.appendChild(modalDelete);
-  
+
           btnAccept.addEventListener('click', () => {
             deletePost(dataset.id);
             modalDelete.style.display = 'none';
@@ -154,13 +149,13 @@ export const mainPage = () => {
           });
         });
       });
-  
+
       const btnEdit = newPost.querySelectorAll('.btnEdit');
       btnEdit.forEach((btn) => {
         btn.addEventListener('click', async ({ target: { dataset } }) => {
           const doc = await getOnlyPost(dataset.id);
           const post = doc.data();
-  
+
           postForm.postDescription.value = post.description;
           editStatus = true;
           id = doc.id;
@@ -174,7 +169,7 @@ export const mainPage = () => {
       });
     });
   };
-  
+
   showPosts(newPost);
   const btnMenu = mainContainer.querySelector('#btnMenuContainer');
   const asideMain = mainContainer.querySelector('#asideMain');
