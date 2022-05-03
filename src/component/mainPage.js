@@ -75,7 +75,7 @@ export const mainPage = () => {
         if (post.description !== '' && post.description !== ' ') {
           html += `
             <div class="cardPost">
-              <div class="userContainer"> <img class="imgUserPost" src="../img/user.png"><div class= "nameUser" data-id="${doc.id}"></div></div><button class="btnsCrud" data-id="${doc.id}">...</button>
+              <div class="userContainer"> <img class="imgUserPost" src="../img/user.png"><div class= "nameUser" data-id="${doc.id}"></div></div><button class="btnsCrud" data-id="${doc.id}"></button>
               <div class= "divDate"> ${post.date.toDate().toString().slice(0, 21)} </div>
               <p class="textPost">${post.description}</p>
               <div class="btnsPost" data-id="${doc.id}">
@@ -84,6 +84,13 @@ export const mainPage = () => {
               </div>
               <div class="divLikes" ><button class="btnLikes" data-id="${doc.id}" >🤍<span class="spanLikes">${post.likes}</span></button>  </div>
             </div>`;
+          const doc2 = await getOnlyPost(doc.id);
+          const userDataId = doc2.data().userId;
+          if (dataUser().uid === userDataId) {
+            mainContainer.querySelector(`.btnsCrud[data-id="${doc.id}"]`).innerHTML = '...';
+          } else {
+            console.log('no hay tres puntitos');
+          }
           const userResult = await getUser(post.userId);
           const nameDivs = newPost.querySelector(`[data-id="${doc.id}"]`);
           nameDivs.innerText = userResult.data().firstName;
@@ -163,9 +170,16 @@ export const mainPage = () => {
           postForm.btnPost.innerText = 'Guardar Cambios';
         });
       });
+
       mainContainer.querySelectorAll('.btnsCrud').forEach((btnCrud) => {
-        btnCrud.addEventListener('click', ({ target: { dataset } }) => {
-          mainContainer.querySelector(`.btnsPost[data-id="${dataset.id}"]`).classList.toggle('active');
+        btnCrud.addEventListener('click', async ({ target: { dataset } }) => {
+          const doc2 = await getOnlyPost(dataset.id);
+          const userDataId = doc2.data().userId;
+          if (dataUser().uid === userDataId) {
+            mainContainer.querySelector(`.btnsPost[data-id="${dataset.id}"]`).classList.toggle('active');
+          } else {
+            console.log('no coinciden los usuarios');
+          }
         });
       });
     });

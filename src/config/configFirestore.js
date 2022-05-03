@@ -62,8 +62,8 @@ export const saveUsersData = (id, firstName, lastName, email, birthday) => {
 };
 export const postRef = (users, user, posts, post) => doc(db, users, user, posts, post);
 
-export const dataUser = async () => {
-  const auth = await getAuth();
+export const dataUser =  () => {
+  const auth = getAuth();
   const user = auth.currentUser;
   return user;
 };
