@@ -75,15 +75,14 @@ export const mainPage = () => {
         if (post.description !== '' && post.description !== ' ') {
           html += `
             <div class="cardPost">
-              <div class= "nameUser" data-id="${doc.id}"><div class="divUserPhoto"><img class="imgUserPost" > </div><button class="btnsCrud" data-id="${doc.id}">...</button></div>
+              <div class="userContainer"> <img class="imgUserPost" src="../img/user.png"><div class= "nameUser" data-id="${doc.id}"></div></div><button class="btnsCrud" data-id="${doc.id}">...</button>
               <div class= "divDate"> ${post.date.toDate().toString().slice(0, 21)} </div>
               <p class="textPost">${post.description}</p>
-              <div class="btnsPost">
+              <div class="btnsPost" data-id="${doc.id}">
                 <button class="btnDelete" data-id="${doc.id}">🗑</button>
                 <button class="btnEdit" data-id="${doc.id}">🖉</button>
               </div>
               <div class="divLikes" ><button class="btnLikes" data-id="${doc.id}" >🤍<span class="spanLikes">${post.likes}</span></button>  </div>
-              
             </div>`;
           const userResult = await getUser(post.userId);
           const nameDivs = newPost.querySelector(`[data-id="${doc.id}"]`);
@@ -99,15 +98,17 @@ export const mainPage = () => {
         btn.addEventListener('click', async ({ target: { dataset } }) => {
           const doc = await getOnlyPost(dataset.id);
           id = doc.id;
+          const dataUsuario = await dataUser();
+          console.log('dataaaaaaaa usuario', dataUsuario);
           const post = doc.data();
           editStatus = true;
           const likes = await getLikes(id);
           const likesUserId = likes.map((e) => e.data().userId);
           console.log({ likesUserId });
           const filterLike = likes.map((elem) => {
-            if (elem.data().userId === dataUser().uid) { return elem.id; }
+            if (elem.data().userId === dataUsuario.uid) { return elem.id; }
           });
-          if (!likesUserId.includes(dataUser().uid)) {
+          if (!likesUserId.includes(dataUsuario.uid)) {
             console.log('aumentar likes', likes);
             addLike(id, dataUser().uid);
           } else {
@@ -163,8 +164,8 @@ export const mainPage = () => {
         });
       });
       mainContainer.querySelectorAll('.btnsCrud').forEach((btnCrud) => {
-        btnCrud.addEventListener('click', () => {
-          mainContainer.querySelector('.btnsPost').classList.toggle('active');
+        btnCrud.addEventListener('click', ({ target: { dataset } }) => {
+          mainContainer.querySelector(`.btnsPost[data-id="${dataset.id}"]`).classList.toggle('active');
         });
       });
     });

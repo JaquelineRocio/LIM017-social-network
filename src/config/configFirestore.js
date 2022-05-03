@@ -2,7 +2,7 @@
 /* eslint-disable import/no-unresolved */
 import './configFirebase.js';
 import {
-  getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc, query, orderBy, collectionGroup, getAuth, setDoc, 
+  getFirestore, collection, addDoc, getDocs, onSnapshot, deleteDoc, doc, getDoc, updateDoc, query, orderBy, collectionGroup, getAuth, setDoc,
 } from './firebase.js';
 
 const db = getFirestore();
@@ -20,6 +20,7 @@ export const getLikes = async (postId) => {
   const arrLikesUser = [];
   for (let i = 0; i < likesSize; i++) {
     arrLikesUser.push(likes.docs[i]);
+    console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',likes.docs[i])
   }
   console.log(arrLikesUser);
   return arrLikesUser;
@@ -34,7 +35,7 @@ export const addLike = (postId, userId) => {
 export const deleteLike = (postId, likeId) => {
   // const likesCollection = collection(db, 'Posts', postId, 'Likes');
   // const userDelete = getLikes(postId).then(v=>v.filter(e=> e == userId));
- // console.log(doc(db, 'Posts', postId, 'Likes', likeId));
+  // console.log(doc(db, 'Posts', postId, 'Likes', likeId));
   deleteDoc(doc(db, 'Posts', postId, 'Likes', likeId));
 };
 
@@ -55,14 +56,15 @@ export const saveUsersData = (id, firstName, lastName, email, birthday) => {
   // addDoc(collection(db, 'Users'), {
   //   firstName, lastName, email, birthday,
   // });
-    setDoc(doc(db, 'Users', id), {
+  setDoc(doc(db, 'Users', id), {
     firstName, lastName, email, birthday,
   });
 };
 export const postRef = (users, user, posts, post) => doc(db, users, user, posts, post);
 
-export const dataUser = () => {
-  const user = getAuth().currentUser;
+export const dataUser = async () => {
+  const auth = await getAuth();
+  const user = auth.currentUser;
   return user;
 };
 export const getUsers = async () => {
