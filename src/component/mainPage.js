@@ -24,7 +24,7 @@ export const mainPage = () => {
    
    <aside id="asideMain">
     <ul id="ulGroup">
-      <li class="liGroup"><i class="fa-solid fa-user icons"></i> Perfil</li>
+      <li class="liGroup" id="perfil"><i class="fa-solid fa-user icons"></i> Perfil</li>
       <li class="liGroup"><i class="fa-solid fa-dog icons"></i>Adopciones</li>
       <li class="liGroup"><i class="fa-solid fa-comment-dots icons"></i>Consejos</li>
       <li class="liGroup"><i class="fa-solid fa-shield-dog icons"></i>Mascotas perdidas</li>
@@ -43,6 +43,9 @@ export const mainPage = () => {
     </form>
     <div id="newPost"></div>
    </section>`;
+  mainContainer.querySelector('#perfil').addEventListener('click', () => {
+    onNavigate('/profile');
+  });
   mainContainer.querySelector('#btnSignOut').addEventListener('click', () => {
     exit().then(onNavigate('/login'));
   });

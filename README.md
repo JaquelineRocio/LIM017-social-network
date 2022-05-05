@@ -1,6 +1,4 @@
 # Entre patas
-
-## Índice
 ## 1. Quiénes son los principales usuarios de producto.
 
 Los principales usuarios son aquellas personas que tengan mascota y que les interese saber más de ellas.
@@ -18,6 +16,9 @@ En esta red social podrán postear información necesaria para los cuidados de l
   - H.U.6: Yo como usuario quiero borrar publicaciones cuando me equivoque.
   - H.U.7: Yo como usuario quiero dar like y quitar like a las publicaciones para poder reaccionar.
 
-## 4. Prototipo de baja fidelidad
-
-## 5. Prototipo de alta fidelidad:
+## 4. Prototipo de alta fidelidad
+![](/src/img/Home.png)
+![](/src/img/Register.png)
+![](/src/img/Login.png)
+![](/src/img/MainPage.png)
+## 5. Proyecto final:

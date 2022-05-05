@@ -4,7 +4,7 @@ import { dataUser } from '../config/configFirestore.js';
 export const profile = () => {
   const sectionProfile = document.createElement('section');
   sectionProfile.setAttribute('class', 'profile');
-  console.log(dataUser())
+  console.log(dataUser());
   sectionProfile.innerHTML = `<div id="cover">
   <img id="coverPhoto" src="../img/portada.jpg">
   <img id="profilePhoto" src=${dataUser().photoURL}></div>
@@ -16,5 +16,5 @@ export const profile = () => {
   <p id="genero"><i class="fa-solid fa-user"></i></p>
   </div>
   `;
-return sectionProfile;
+  return sectionProfile;
 };
