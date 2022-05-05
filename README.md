@@ -22,3 +22,9 @@ En esta red social podrán postear información necesaria para los cuidados de l
 ![](/src/img/Login.png)
 ![](/src/img/MainPage.png)
 ## 5. Proyecto final:
+![](/src/img/PTregister.png)
+![](/src/img/PTlogin.png)
+![](/src/img/PTmainPage.png)
+![](/src/img/responsive-home.png)
+![](/src/img/responsive-register.png)
+![](/src/img/responsive-login.png)
