@@ -14,7 +14,7 @@ En esta red social podrán postear información necesaria para los cuidados de l
   - H.U.4: Yo como usuario quiero crear publicaciones para poder postear.
   - H.U.5: Yo como usuario quiero editar publicaciones para cambiar la información de los posts.
   - H.U.6: Yo como usuario quiero borrar publicaciones cuando me equivoque.
-  - H.U.7: Yo como usuario quiero dar like y quitar like a las publicaciones para poder reaccionar.
+  - H.U.7: Yo como usuario quiero dar like y quitar like a las publicaciones para poder reaccionarrr.
 
 ## 4. Prototipo de alta fidelidad
 ![](/src/img/Home.png)
