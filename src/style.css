@@ -179,7 +179,7 @@ button:hover{
     background-color: #26416d;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 #logoMain{
     height: 100%;
@@ -479,7 +479,7 @@ img.imgUserPost {
     }
     #logoMain{
         height: 130%;
-        margin-right: 12%;
+        margin-left: 8%;
     }
     #btnMenuContainer{
         display: none;
@@ -491,6 +491,7 @@ img.imgUserPost {
         font-family: 'Bellefair', serif;
         border-radius: 5px;
         font-size: 15px;
+        margin-right: 50px;
     }
     #postSection{
         width: 80vw;

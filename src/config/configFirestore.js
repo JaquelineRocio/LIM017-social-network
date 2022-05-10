@@ -14,15 +14,11 @@ export const savePost = (description, userId) => {
 };
 export const getLikes = async (postId) => {
   const likes = await getDocs(collection(db, 'Posts', postId, 'Likes'));
-  // return likes.docs[0].data().userId;
-  // console.log(likes.docs.data().userId);
   const likesSize = likes.size;
   const arrLikesUser = [];
   for (let i = 0; i < likesSize; i++) {
     arrLikesUser.push(likes.docs[i]);
-    console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',likes.docs[i])
   }
-  console.log(arrLikesUser);
   return arrLikesUser;
 };
 
@@ -33,9 +29,6 @@ export const addLike = (postId, userId) => {
   });
 };
 export const deleteLike = (postId, likeId) => {
-  // const likesCollection = collection(db, 'Posts', postId, 'Likes');
-  // const userDelete = getLikes(postId).then(v=>v.filter(e=> e == userId));
-  // console.log(doc(db, 'Posts', postId, 'Likes', likeId));
   deleteDoc(doc(db, 'Posts', postId, 'Likes', likeId));
 };
 
@@ -62,7 +55,7 @@ export const saveUsersData = (id, firstName, lastName, email, birthday) => {
 };
 export const postRef = (users, user, posts, post) => doc(db, users, user, posts, post);
 
-export const dataUser =  () => {
+export const dataUser = () => {
   const auth = getAuth();
   const user = auth.currentUser;
   return user;

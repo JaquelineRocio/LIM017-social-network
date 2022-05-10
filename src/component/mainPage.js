@@ -15,7 +15,6 @@ export const mainPage = () => {
   mainContainer.classList.add('mainPage');
   mainContainer.innerHTML = `<header id="headerMain">
     <img id="logoMain" src="img/LogoRemasterizado.png">
-    <input type="text" id="inputSearch" placeholder="Buscar ..."/>
     <div id="userName"></div>
     <img id="dataGoogle"> 
     <button id="btnSignOut"><i class="fa-solid fa-right-from-bracket"></i>Cerrar Sesión</button>
@@ -25,10 +24,10 @@ export const mainPage = () => {
    <aside id="asideMain">
     <ul id="ulGroup">
       <li class="liGroup" id="perfil"><i class="fa-solid fa-user icons"></i> Perfil</li>
-      <li class="liGroup"><i class="fa-solid fa-dog icons"></i>Adopciones</li>
-      <li class="liGroup"><i class="fa-solid fa-comment-dots icons"></i>Consejos</li>
-      <li class="liGroup"><i class="fa-solid fa-shield-dog icons"></i>Mascotas perdidas</li>
-      <li class="liGroup"><i class="fa-solid fa-circle-question icons"></i>Acerca de nosotros</li>
+      <li class="liGroup">Normas de convivencia de la comunidad</li>
+      <li class="liGroup">1. Realizar publicaciones con respeto </li>
+      <li class="liGroup">2. Respeta la privacidad de terceras personas</li>
+      <li class="liGroup">3. Publica temas relacionados a mascotas.</li>
     </ul>
    </aside>
    
