@@ -35,14 +35,9 @@ export const userState = () => {
   const auth = getAuth();
   return onAuthStateChanged(auth, (user) => {
     if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.email;
       return uid;
-      // ...
     }
-    // User is signed out
-    // ...
     return 'user is signed out';
   });
 };

@@ -2,8 +2,6 @@
 /* eslint-disable import/named */
 import { onNavigate } from '../main.js';
 import { signIn, signInWithGoogle, signInWithFacebook } from '../controllers/auth.js';
-// import { saveUsersData } from '../config/configFirestore.js';
-// import { mainPage } from './mainPage.js';
 
 export const login = () => {
   const sectionLogin = document.createElement('section');

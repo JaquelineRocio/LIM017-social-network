@@ -3,11 +3,6 @@
 /* eslint-disable no-extra-semi */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-// Este es el punto de entrada de tu aplicacion
-
-/* import { myFunction } from './lib/index.js';
-
-myFunction(); */
 import { Home } from './component/home.js';
 import { login } from './component/login.js';
 import { register } from './component/register.js';
@@ -48,20 +43,3 @@ window.onpopstate = () => {
 window.onload = function () {
   divRoot.appendChild(component());
 };
-/* const btnMenu = document.querySelector('#btnMenuContainer');
-const asideMain = document.querySelector('#asideMain');
-btnMenu.addEventListener('click', () => {
-  asideMain.classList.toggle('active');
-}); */
-
-// const btnSignOut = document.querySelector('#btnSignOut');
-// btnSignOut.addEventListener('click', () => {
-//   onNavigate('/login');
-// })
-// });
-
-// const btnCrud = postSection.querySelector('.btnCrud');
-// const btnsPost = postSection.querySelector('.btnsPost');
-// btnCrud.addEventListener('click', () => {
-//   btnsPost.classList.toggle('active');
-// });

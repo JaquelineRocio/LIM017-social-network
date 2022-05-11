@@ -1,22 +1,20 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable consistent-return */
 /* eslint-disable import/no-cycle */
 import { onNavigate } from '../main.js';
-import { exit, dataUserGoogle, userState } from '../controllers/auth.js';
+import { exit } from '../controllers/auth.js';
 import {
   savePost, updatePost, onGetPost, deletePost, getOnlyPost, dataUser,
   addLike, getLikes, deleteLike, getUser,
 } from '../config/configFirestore.js';
 
-// import { showPosts } from '../controllers/posts.js';
-
-// const allLikes= getAllLikes();
-// console.log(allLikes);
 export const mainPage = () => {
   const mainContainer = document.createElement('main');
   mainContainer.classList.add('mainPage');
   mainContainer.innerHTML = `<header id="headerMain">
     <img id="logoMain" src="img/LogoRemasterizado.png">
     <div id="userName"></div>
-    <img id="dataGoogle"> 
+    <img id="dataGoogle">
     <button id="btnSignOut"><i class="fa-solid fa-right-from-bracket"></i>Cerrar Sesión</button>
     <button id="btnMenuContainer"> <i class="fa-solid fa-bars"></i> </button> 
    </header>
@@ -72,7 +70,6 @@ export const mainPage = () => {
       let html = '';
       querySnapshot.forEach(async (doc) => {
         const post = doc.data();
-        let userName;
 
         if (post.description !== '' && post.description !== ' ') {
           html += `
@@ -90,8 +87,6 @@ export const mainPage = () => {
           const userDataId = doc2.data().userId;
           if (dataUser().uid === userDataId) {
             mainContainer.querySelector(`.btnsCrud[data-id="${doc.id}"]`).innerHTML = '...';
-          } else {
-            console.log('no hay tres puntitos');
           }
           const userResult = await getUser(post.userId);
           const nameDivs = newPost.querySelector(`[data-id="${doc.id}"]`);
@@ -102,27 +97,21 @@ export const mainPage = () => {
       // eslint-disable-next-line no-param-reassign
       newPost.innerHTML = html;
       const btnLikes = newPost.querySelectorAll('.btnLikes');
-      const userLike = 0;
       btnLikes.forEach((btn) => {
         btn.addEventListener('click', async ({ target: { dataset } }) => {
           const doc = await getOnlyPost(dataset.id);
           id = doc.id;
           const dataUsuario = await dataUser();
-          console.log('dataaaaaaaa usuario', dataUsuario);
-          const post = doc.data();
           editStatus = true;
           const likes = await getLikes(id);
           const likesUserId = likes.map((e) => e.data().userId);
-          console.log({ likesUserId });
           const filterLike = likes.map((elem) => {
             if (elem.data().userId === dataUsuario.uid) { return elem.id; }
           });
           if (!likesUserId.includes(dataUsuario.uid)) {
-            console.log('aumentar likes', likes);
             addLike(id, dataUser().uid);
           } else {
             // btnLikes.value = post.likes + 1;
-            console.log('disminuir likes', likes);
             deleteLike(id, filterLike.toString());
           }
           updatePost(id, { likes: likes.length });
@@ -179,8 +168,6 @@ export const mainPage = () => {
           const userDataId = doc2.data().userId;
           if (dataUser().uid === userDataId) {
             mainContainer.querySelector(`.btnsPost[data-id="${dataset.id}"]`).classList.toggle('active');
-          } else {
-            console.log('no coinciden los usuarios');
           }
         });
       });
@@ -193,6 +180,5 @@ export const mainPage = () => {
   btnMenu.addEventListener('click', () => {
     asideMain.classList.toggle('active');
   });
-  // mainContainer.querySelector('#dataGoogle').setAttribute('src', dataUserGoogle().photoURL);
   return mainContainer;
 };

@@ -1,6 +1,6 @@
 export const initializeApp = () => Promise.resolve({});
 export const getAuth = () => Promise.resolve({});
-// export const createUserWithEmailAndPassword = jest.fn((auth, email, password) 
+// export const createUserWithEmailAndPassword = jest.fn((auth, email, password)
 // =>Promise.resolve({ currentUser: {
 //     Password: password,
 //     Email: email,
@@ -20,8 +20,8 @@ export const onSnapshot = () => Promise.resolve({});
 export const db = jest.fn();
 export const deleteDoc = jest.fn(() => {});
 export const doc = jest.fn((_db_, nameCol, idDoc) => Object({
-    [nameCol]: idDoc,
-  }));
+  [nameCol]: idDoc,
+}));
 export const getDoc = () => Promise.resolve({});
 export const updateDoc = () => Promise.resolve({});
 export const query = () => Promise.resolve({});
