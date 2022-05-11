@@ -2,9 +2,8 @@
 /* eslint-disable no-unused-vars */
 import { createUser } from '../controllers/auth.js';
 import { onNavigate } from '../main.js';
-import { saveUsersData } from '../config/configFirestore.js';
+import { saveUsersData, dataUser } from '../config/configFirestore.js';
 import { errorRegister } from '../lib/errorHandler.js';
-import { dataUser } from '../config/configFirestore.js';
 
 export const register = () => {
   const sectionRegister = document.createElement('section');
@@ -104,7 +103,6 @@ export const register = () => {
           } else {
             wrongPassword.innerText = errorRegister(result);
           }
-          console.log(typeof (result));
         });
     } else {
       wrongPassword.innerText = 'Las contraseñas no coinciden';

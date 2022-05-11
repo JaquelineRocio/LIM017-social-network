@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable max-len */
 /* eslint-disable import/no-unresolved */
 import './configFirebase.js';
@@ -46,9 +47,6 @@ export const updatePost = (id, newFields) => updateDoc(doc(db, 'Posts', id), new
 
 // registra los datos del usuario
 export const saveUsersData = (id, firstName, lastName, email, birthday) => {
-  // addDoc(collection(db, 'Users'), {
-  //   firstName, lastName, email, birthday,
-  // });
   setDoc(doc(db, 'Users', id), {
     firstName, lastName, email, birthday,
   });
@@ -62,8 +60,6 @@ export const dataUser = () => {
 };
 export const getUsers = async () => {
   const users = await getDocs(collection(db, 'Users'));
-  // return likes.docs[0].data().userId;
-  // console.log(likes.docs.data().userId);
   const usersSize = users.size;
   const arrUsers = [];
   for (let i = 0; i < usersSize; i++) {
